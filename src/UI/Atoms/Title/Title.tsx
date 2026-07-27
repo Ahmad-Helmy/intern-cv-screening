@@ -1,46 +1,41 @@
 import "./Title.css";
 
-export default function Title({type, children, variant}) {
-
-    let className = "title-default";
-    let variantClassName = "variant-default";
-    
+function getClassName(type: string) {
     switch (type) {
         case "XXlarge":
-            className = "title-XXlarge";
-            break;
+            return "title-XXlarge";
         case "Xlarge":
-            className = "title-Xlarge";
-            break;
+            return "title-Xlarge";
         case "large":
-            className = "title-large";
-            break;
+            return "title-large";
         case "medium":
-            className = "title-medium";
-            break;
+            return "title-medium";
         case "small":
-            className = "title-small";
-            break;
+            return "title-small";
         case "extra-small":
-            className = "title-extra-small";
-            break;
+            return "title-extra-small";
         default:
-            className = "title-medium";
+            return "title-medium";
     }
+}
 
+function getVariantClassName(variant: string) {
     switch (variant) {
         case "primary":
-            variantClassName = "variant-primary";
-            break;
+            return "variant-primary";
         case "secondary":
-            variantClassName = "variant-secondary";
-            break;
+            return "variant-secondary";
         case "muted":
-            variantClassName = "variant-muted";
-            break;
+            return "variant-muted";
         default:
-            variantClassName = "variant-primary";
+            return "variant-primary";
     }
+}   
+
+export default function Title({type, children, variant}: {type: string; children: React.ReactNode; variant: string}) {
+
+    const className = getClassName(type);
+    const variantClassName = getVariantClassName(variant);
 
     return <p className={`default ${className} ${variantClassName}`} >{children}</p>
 
