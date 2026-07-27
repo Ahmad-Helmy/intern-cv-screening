@@ -4,17 +4,7 @@ import BackButton from "./UI/Atoms/TextButton/BackButton";
 function App() {
   return (
     <>
-     <div> Intern CV Screening </div>
-<<<<<<< HEAD
-      <div>
-        <BackButton
-          label="Back to candidates"
-          onClick={() => alert("clicked!")}
-        />
-      </div>
-=======
-
->>>>>>> 234a006 ("remove the buttonback.css file")
+      <div> Intern CV Screening </div>
     </>
   );
 }
