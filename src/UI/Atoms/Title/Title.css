@@ -1,0 +1,37 @@
+.default {
+  font-family: var(--font-family);
+}
+
+.title-Xlarge {
+  font-size: var(--font-size-xl);
+}
+.title-XXlarge {
+  font-size: var(--font-size-2xl);
+}
+.title-large {
+  font-size: var(--font-size-lg);
+}
+.title-medium {
+  font-size: var(--font-size-base);
+}
+.title-small {
+  font-size: var(--font-size-sm);
+}
+.title-extra-small {
+  font-size: var(--font-size-xs);
+}
+
+.variant-primary {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+}
+.variant-secondary {
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-semibold);
+  opacity: 0.7;
+}
+.variant-muted {
+  color: var(--text-muted);
+  font-weight: var(--font-weight-normal);
+  opacity: 0.5;
+}
