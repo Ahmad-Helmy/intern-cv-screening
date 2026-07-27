@@ -1,4 +1,4 @@
-.back-button {
+/* .back-button {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-2);
@@ -16,6 +16,6 @@
 }
 
 .back-button__text {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
-}
+} */

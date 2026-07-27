@@ -1,11 +1,16 @@
 import "./App.css";
-import Sidebar from "../src/UI/Organisms/sideBar/Sidebar";
+import BackButton from "./UI/Atoms/TextButton/BackButton";
+
 function App() {
   return (
-    <div>
-      {/* <div>Intern CV Screening</div> */}
-      <Sidebar />
-    </div>
+    <>
+      <div>
+        <BackButton
+          label="Back to candidates"
+          onClick={() => alert("clicked!")}
+        />
+      </div>
+    </>
   );
 }
 
