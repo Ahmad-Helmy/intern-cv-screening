@@ -1,0 +1,43 @@
+#large {
+  width: 330px;
+  height: 36px;
+
+  padding: 8.5px 20px;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  background: #ffffff;
+  margin: 4px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15px;
+  /* color: var(--text-primary); */
+  color: purple;
+
+  box-sizing: border-box;
+  outline: none;
+}
+
+
+
+#small {
+  width: 120px;
+  height: 36px;
+
+  padding: 8.5px 20px;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  background: #ffffff;
+  margin: 4px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15px;
+  /* color: var(--text-primary); */
+  color: purple;
+
+  box-sizing: border-box;
+  outline: none;
+}
