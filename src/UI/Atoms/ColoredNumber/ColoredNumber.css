@@ -1,0 +1,28 @@
+.score-value {
+  display: inline-block;
+  font-family: var(--font-family);
+  line-height: 1;
+}
+.score-value.size-large {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+}
+.score-value.size-small {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+.score-value.score--high {
+  color: var(--score-high);
+}
+
+.score-value.score--mid {
+  color: var(--score-mid);
+}
+
+.score-value.score--low {
+  color: var(--score-low);
+}
+
+.score-value.score--none {
+  color: var(--score-none);
+}
