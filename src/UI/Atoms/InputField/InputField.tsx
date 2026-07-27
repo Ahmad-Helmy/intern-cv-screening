@@ -13,8 +13,3 @@ function InputField({ placeholder, name }) {
 }
 
 export default InputField;
-
-
-
-
-
