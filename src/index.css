@@ -1,125 +1,171 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --color-primary: #6c5ce7;
+  --color-primary-dark: #5849c4;
+  --color-primary-light: #a29bfe;
+  --color-white: #ffffff;
 
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --sidebar-bg: #1c1e3a;
+  --sidebar-text: rgba(255, 255, 255, 0.65);
+  --sidebar-hover: rgba(255, 255, 255, 0.08);
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --bg-page: #f0f2fa;
+  --bg-subtle: #f8f9fd;
+  --bg-panel: #6c5ce722;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --text-primary: #1c1e3a;
+  --text-secondary: #5d6483;
+  --text-muted: #9da5bd;
+
+  --border-color: #e4e7f0;
+
+  --color-success: #00b894;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-danger-dark: #b91c1c;
+
+  /* Status badge tokens — aligned with CandidateStatus enum values */
+  --badge-imported-bg: #eef0fd;
+  --badge-imported-text: var(--text-secondary);
+  --badge-processing-bg: #fff3cd;
+  --badge-processing-text: #856404;
+  --badge-evaluated-bg: rgba(108, 92, 231, 0.12);
+  --badge-evaluated-text: var(--color-primary);
+  --badge-nominated-bg: #d4edda;
+  --badge-nominated-text: #155724;
+  --badge-rejected-bg: #f8d7da;
+  --badge-rejected-text: #721c24;
+  --badge-default-bg: var(--bg-subtle);
+  --badge-default-text: var(--text-secondary);
+
+  /* Score level colors */
+  --score-high: #28a745;
+  --score-mid: #f59e0b;
+  --score-low: #dc3545;
+  --score-none: var(--text-muted);
+
+  /* ── Spacing ── */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+
+  /* ── Typography ── */
+  --font-family:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 18px;
+  --font-size-xl: 22px;
+  --font-size-2xl: 28px;
+
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 2px 8px rgba(28, 30, 58, 0.06);
+  --shadow-lg: 0 8px 40px rgba(28, 30, 58, 0.12);
+
+  /* ── Shape ── */
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-circle: 50%;
+  /* ── Motion ── */
+  --transition-fast: 0.15s ease;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* ── Colors ─────────────────────────────────────────────────────────────────── */
-    :root {
-      --color-primary: #6c5ce7;
-      --color-primary-dark: #5849c4;
-      --color-primary-light: #a29bfe;
-      --color-white: #ffffff;
+    --color-primary: #6c5ce7;
+    --color-primary-dark: #5849c4;
+    --color-primary-light: #a29bfe;
+    --color-white: #ffffff;
 
-      --sidebar-bg: #1c1e3a;
-      --sidebar-text: rgba(255, 255, 255, 0.65);
-      --sidebar-hover: rgba(255, 255, 255, 0.08);
+    --sidebar-bg: #1c1e3a;
+    --sidebar-text: rgba(255, 255, 255, 0.65);
+    --sidebar-hover: rgba(255, 255, 255, 0.08);
 
-      --bg-page: #f0f2fa;
-      --bg-subtle: #f8f9fd;
-      --bg-panel: #6c5ce722;
+    --bg-page: #f0f2fa;
+    --bg-subtle: #f8f9fd;
+    --bg-panel: #6c5ce722;
 
-      --text-primary: #1c1e3a;
-      --text-secondary: #5d6483;
-      --text-muted: #9da5bd;
+    --text-primary: #1c1e3a;
+    --text-secondary: #5d6483;
+    --text-muted: #9da5bd;
 
-      --border-color: #e4e7f0;
+    --border-color: #e4e7f0;
 
-      --color-success: #00b894;
-      --color-warning: #d97706;
-      --color-danger: #dc2626;
-      --color-danger-dark: #b91c1c;
+    --color-success: #00b894;
+    --color-warning: #d97706;
+    --color-danger: #dc2626;
+    --color-danger-dark: #b91c1c;
 
-      /* Status badge tokens — aligned with CandidateStatus enum values */
-      --badge-imported-bg: #eef0fd;
-      --badge-imported-text: var(--text-secondary);
-      --badge-processing-bg: #fff3cd;
-      --badge-processing-text: #856404;
-      --badge-evaluated-bg: rgba(108, 92, 231, 0.12);
-      --badge-evaluated-text: var(--color-primary);
-      --badge-nominated-bg: #d4edda;
-      --badge-nominated-text: #155724;
-      --badge-rejected-bg: #f8d7da;
-      --badge-rejected-text: #721c24;
-      --badge-default-bg: var(--bg-subtle);
-      --badge-default-text: var(--text-secondary);
+    /* Status badge tokens — aligned with CandidateStatus enum values */
+    --badge-imported-bg: #eef0fd;
+    --badge-imported-text: var(--text-secondary);
+    --badge-processing-bg: #fff3cd;
+    --badge-processing-text: #856404;
+    --badge-evaluated-bg: rgba(108, 92, 231, 0.12);
+    --badge-evaluated-text: var(--color-primary);
+    --badge-nominated-bg: #d4edda;
+    --badge-nominated-text: #155724;
+    --badge-rejected-bg: #f8d7da;
+    --badge-rejected-text: #721c24;
+    --badge-default-bg: var(--bg-subtle);
+    --badge-default-text: var(--text-secondary);
 
-      /* Score level colors */
-      --score-high: #28a745;
-      --score-mid: #f59e0b;
-      --score-low: #dc3545;
-      --score-none: var(--text-muted);
+    /* Score level colors */
+    --score-high: #28a745;
+    --score-mid: #f59e0b;
+    --score-low: #dc3545;
+    --score-none: var(--text-muted);
 
-      /* ── Spacing ── */
-      --spacing-1: 4px;
-      --spacing-2: 8px;
-      --spacing-3: 12px;
-      --spacing-4: 16px;
-      --spacing-5: 20px;
-      --spacing-6: 24px;
-      --spacing-8: 32px;
-      --spacing-10: 40px;
-      --spacing-12: 48px;
+    /* ── Spacing ── */
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 20px;
+    --spacing-6: 24px;
+    --spacing-8: 32px;
+    --spacing-10: 40px;
+    --spacing-12: 48px;
 
-      /* ── Typography ── */
-      --font-family:
-        "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    /* ── Typography ── */
+    --font-family:
+      "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-      --font-size-xs: 11px;
-      --font-size-sm: 13px;
-      --font-size-base: 14px;
-      --font-size-lg: 18px;
-      --font-size-xl: 22px;
-      --font-size-2xl: 28px;
+    --font-size-xs: 11px;
+    --font-size-sm: 13px;
+    --font-size-base: 14px;
+    --font-size-lg: 18px;
+    --font-size-xl: 22px;
+    --font-size-2xl: 28px;
 
-      --font-weight-medium: 500;
-      --font-weight-semibold: 600;
-      --font-weight-bold: 700;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
 
-      /* ── Shadows ── */
-      --shadow-sm: 0 2px 8px rgba(28, 30, 58, 0.06);
-      --shadow-lg: 0 8px 40px rgba(28, 30, 58, 0.12);
+    /* ── Shadows ── */
+    --shadow-sm: 0 2px 8px rgba(28, 30, 58, 0.06);
+    --shadow-lg: 0 8px 40px rgba(28, 30, 58, 0.12);
 
-      /* ── Shape ── */
-      --border-radius-sm: 6px;
-      --border-radius-md: 8px;
-      --border-radius-lg: 12px;
-      --border-radius-circle: 50%;
-      /* ── Motion ── */
-      --transition-fast: 0.15s ease;
-    }
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+    /* ── Shape ── */
+    --border-radius-sm: 6px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-circle: 50%;
+    /* ── Motion ── */
+    --transition-fast: 0.15s ease;
   }
 }
 
