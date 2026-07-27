@@ -1,16 +1,19 @@
 import "./Bar.css";
 function ProgressBar({ percentage }: { percentage: number }) {
-  let color = "";
-  if (percentage <= 49) {
-    color = "progress-bar-low";
-  } else if (percentage >= 49 && percentage < 79) {
-    color = "progress-bar-mid";
-  } else color = "progress-bar-success";
+  const getColor = () => {
+    if (percentage <= 49) {
+      return "low";
+    }
+    if (percentage < 79) {
+      return "mid";
+    }
+    return "success";
+  };
 
   return (
     <div className="progress-bar">
       <div
-        className={`progress-fill ${color}`}
+        className={`progress-fill progress-bar-${getColor()}`}
         style={{ width: `${percentage}%` }}
       />
     </div>
