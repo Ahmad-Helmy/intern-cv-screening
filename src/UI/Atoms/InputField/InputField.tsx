@@ -1,13 +1,13 @@
-function InputField({placeholder, name}) {
+function InputField({ placeholder, name }) {
     return (
-    <>
-    <label>{name}</label>
+        <>
+            <label>{name}</label>
 
-    <input type="text"
-           name={name}
-           placeholder={placeholder}
-           id="InputField"/>
-    </>
+            <input type="text"
+                name={name}
+                placeholder={placeholder}
+                id="InputField" />
+        </>
     )
 
 }
