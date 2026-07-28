@@ -1,9 +1,11 @@
 import "./App.css";
+import Sidebar from "../src/UI/Organisms/sideBar/Sidebar";
 function App() {
   return (
-    <>
-      <div>Intern CV Screening</div>
-    </>
+    <div>
+      {/* <div>Intern CV Screening</div> */}
+      <Sidebar />
+    </div>
   );
 }
 

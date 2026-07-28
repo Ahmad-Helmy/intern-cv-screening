@@ -1,6 +1,6 @@
 import "./Logo.css";
 
-const Logo = () => {
+export const Logo = () => {
   return (
     <h1 className="logo">
       Intern<span>Screen</span>
