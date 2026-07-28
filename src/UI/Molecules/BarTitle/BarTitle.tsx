@@ -4,8 +4,8 @@ import ProgressBar from "../../Atoms/Bar/Bar";
 type BarTitleProps = {
   label: string;
   percentage: number;
-  type?: string;
-  variant?: string;
+  type?: "xxlarge" | "xlarge" | "large" | "medium" | "small" | "x-small";
+  variant?: "primary" | "secondary" | "muted";
 };
 
 export default function BarTitle({
