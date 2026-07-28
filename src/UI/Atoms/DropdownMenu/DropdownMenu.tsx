@@ -1,7 +1,14 @@
 import { useEffect } from "react";
 import "./DropdownMenu.css";
 
-function DropdownMenu ({ options , size}) {
+
+type DropdownMenu_props = {
+    options : string[];
+    size : string;
+    placeholder? : string
+}
+
+export default function DropdownMenu ({ options , size , placeholder = "Select"} : DropdownMenu_props) {
     useEffect(()=>{
         console.log(options)
         console.log(size)
@@ -11,16 +18,14 @@ function DropdownMenu ({ options , size}) {
 
     return (
         <div className="DropdownMenu">
-            <select className={size}>
+            <select className={size} defaultValue= "Select">
                 
-                <option value= {options[0]}></option>
-                <option value={options[1]}></option>
-                <option value={options[2]}></option>
-
+                <option>{options[0]}</option>
+                <option>{options[1]}</option>
+                <option>{options[2]}</option>
+                
             </select>
         </div>
     );
 
 }
-
-export default DropdownMenu;

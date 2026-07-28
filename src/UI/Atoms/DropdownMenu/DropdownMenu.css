@@ -1,4 +1,4 @@
-#large {
+.large {
   width: 330px;
   height: 36px;
 
@@ -21,7 +21,7 @@
 
 
 
-#small {
+.small  {
   width: 120px;
   height: 36px;
 
