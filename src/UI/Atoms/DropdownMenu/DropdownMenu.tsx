@@ -1,25 +1,25 @@
 import "./DropdownMenu.css";
 
-
 type DropdownMenu_props = {
-    options : string[];
-    size : string;
-    placeholder? : string
-}
+  options?: string[];
+  size: string;
+  placeholder?: string;
+  onChange: (value: string) => void;
+};
 
-export default function DropdownMenu ({ options , size , placeholder = "Select"} : DropdownMenu_props) {
-
-
-    return (
-        <div className="DropdownMenu">
-            <select className={size} defaultValue= {placeholder}>
-                
-                <option>{options[0]}</option>
-                <option>{options[1]}</option>
-                <option>{options[2]}</option>
-
-            </select>
-        </div>
-    );
-
+export default function DropdownMenu({
+  options = ["no items"],
+  size,
+  onChange,
+}: DropdownMenu_props) {
+  return (
+    <select
+      className={`DropdownMenu DropdownMenu--${size}`}
+      onChange={(event) => onChange(event.target.value)}
+    >
+      {options.map((option) => (
+        <option> {option} </option>
+      ))}
+    </select>
+  );
 }
