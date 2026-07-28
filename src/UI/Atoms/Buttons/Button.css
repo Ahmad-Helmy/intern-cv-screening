@@ -33,6 +33,26 @@
   border: 1px solid var(--color-danger);
 }
 
-.btn-ghost{
-    background: transparent;
+.btn-ghost {
+  background: transparent;
+}
+
+.btn-transparent {
+  min-height: var(--spacing-6);
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius-md);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  padding: 12px 8px;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.btn-transparent:hover {
+  background: var(--sidebar-hover);
+  color: var(--color-white);
 }
