@@ -7,13 +7,10 @@ type props = {
 
 const DefaultTemplate = ({ children }: props) => {
   return (
-    <main>
-      <div>
-        <Sidebar />
-      </div>
-
-      <div className="container">{children}</div>
-    </main>
+    <>
+      <Sidebar />
+      <main className="main-container">{children}</main>
+    </>
   );
 };
 

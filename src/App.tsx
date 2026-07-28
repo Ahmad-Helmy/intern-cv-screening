@@ -1,8 +1,11 @@
 import "./App.css";
+import DefaultTemplate from "./UI/DefaultTemplates/DefaultTemplate";
 function App() {
   return (
     <>
-      <div>Intern CV Screening</div>
+      <DefaultTemplate>
+        <div>Intern CV Screening</div>
+      </DefaultTemplate>
     </>
   );
 }

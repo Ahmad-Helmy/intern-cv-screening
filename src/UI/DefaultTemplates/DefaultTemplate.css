@@ -1,16 +1,9 @@
-/* Shared Components */
-main {
-  background-color: var(--bg-page);
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-}
-
-.container {
+.main-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  padding: 32px;
+  padding: var(--spacing-4) var(--spacing-8) var(--spacing-4)
+    calc(var(--spacing-sidebar) + var(--spacing-8));
   gap: 16px;
 }

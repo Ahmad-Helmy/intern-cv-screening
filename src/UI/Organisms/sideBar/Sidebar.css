@@ -1,6 +1,5 @@
 .sidebar {
-  max-width: 240px;
-  inset: 0 0;
+  max-width: vae(--spacing-sidebar);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -8,8 +7,7 @@
   color: var(--color-white);
   font-family: var(--font-family);
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0 0;
   height: 100vh;
 }
 
