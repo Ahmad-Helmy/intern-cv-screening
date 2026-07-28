@@ -1,0 +1,21 @@
+/* .back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family);
+  color: var(--text-secondary);
+}
+
+.back-button__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.back-button__text {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+} */

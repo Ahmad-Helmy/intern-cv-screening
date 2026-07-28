@@ -1,3 +1,6 @@
+.title-Xlarge {
+  font-size: var(--font-size-xl);
+}
 .title-XXlarge {
   font-size: var(--font-size-2xl);
 }

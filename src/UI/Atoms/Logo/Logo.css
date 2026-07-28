@@ -1,9 +1,15 @@
 .logo {
   color: var(--text-primary);
-  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
 }
 
 .logo span {
   color: var(--color-primary);
+}
+
+.logo--sidebar {
+  color: var(--color-white);
+  padding-left: 24px;
+  text-align: start !important;
+  padding-bottom: 24px;
 }

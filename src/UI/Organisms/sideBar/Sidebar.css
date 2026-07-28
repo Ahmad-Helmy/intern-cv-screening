@@ -1,0 +1,132 @@
+.sidebar {
+  max-width: 240px;
+  inset: 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--sidebar-bg);
+  color: var(--color-white);
+  font-family: var(--font-family);
+  position: sticky;
+  height: 100vh;
+}
+
+.sidebar_top {
+  padding: var(--spacing-6) var(--spacing-1) 0;
+}
+
+.sidebar_logo {
+  display: inline-block;
+  margin: 0 var(--spacing-3) var(--spacing-8);
+  color: var(--color-white);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.sidebar_logo span {
+  color: var(--color-primary);
+}
+
+.sidebar_nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.sidebar_link {
+  min-height: var(--spacing-6);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius-md);
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.sidebar_link:hover,
+.sidebar_link:focus-visible {
+  background: var(--sidebar-hover);
+  color: var(--color-white);
+}
+
+.sidebar_link.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sidebar_footer {
+  padding: var(--spacing-6);
+  border-top: 1px solid var(--sidebar-border);
+}
+
+.sidebar_profile {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+}
+
+.sidebar_avatar {
+  width: var(--spacing-8);
+  height: var(--spacing-8);
+  flex: 0 0 var(--spacing-8);
+  display: grid;
+  place-items: center;
+  border-radius: var(--border-radius-circle);
+  background: var(--color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.sidebar_user {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_user strong,
+.sidebar_user span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar_user strong {
+  font-size: var(--font-size-sm);
+}
+
+.sidebar_user span {
+  color: var(--bg-page);
+  font-size: var(--font-size-xs);
+}
+
+.sidebar_sign_out {
+  min-height: auto;
+  padding: var(--spacing-2) var(--spacing-3);
+}
+
+.page_with_sidebar {
+  margin-left: calc(var(--spacing-10) * 6);
+}
+
+.sidebar_preview {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar_frame {
+  width: calc(var(--spacing-10) * 6);
+  height: 100vh;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 10;
+  border: 0;
+}
