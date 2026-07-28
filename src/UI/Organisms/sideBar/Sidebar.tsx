@@ -1,4 +1,4 @@
-import { Logo } from "../../Atoms/Logo/Logo.tsx";
+import Logo from "../../Atoms/Logo/Logo.tsx";
 import "./SideBar.css";
 
 function Sidebar() {
@@ -6,7 +6,7 @@ function Sidebar() {
     <>
       <aside className="sidebar">
         <div className="sidebar_top">
-          <Logo />
+          <Logo type="sidebar" size="lg" />
 
           <nav className="sidebar_nav">
             <div className="sidebar_link active">
