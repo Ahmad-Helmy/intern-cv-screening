@@ -1,0 +1,19 @@
+.DropdownMenu {
+  height: 36px;
+  padding: 8.5px var(--spacing-5);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.DropdownMenu--large {
+  width: 330px;
+}
+
+.DropdownMenu--small {
+  width: 120px;
+}
