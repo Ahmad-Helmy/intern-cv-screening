@@ -1,10 +1,8 @@
 import "./App.css";
-import DefaultTemplate from "./UI/DefaultTemplates/DefaultTemplate";
-
 function App() {
   return (
     <>
-      <DefaultTemplate> </DefaultTemplate>
+      <div>Intern CV Screening</div>
     </>
   );
 }
