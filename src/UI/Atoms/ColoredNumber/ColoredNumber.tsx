@@ -1,5 +1,5 @@
 import "./ColoredNumber.css";
-import { getColorClass, getdisplayScore } from "./Utils";
+import { getColorClass, getdisplayScore } from "./ColoredNumber.utils";
 
 export const ColoredNumber = ({
   score,
