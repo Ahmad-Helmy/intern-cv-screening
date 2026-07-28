@@ -1,6 +1,6 @@
 .logo {
   color: var(--text-primary);
-  font-weight: var(--font-weight-bold); /* static */
+  font-weight: var(--font-weight-bold);
 }
 
 .logo span {
@@ -8,5 +8,5 @@
 }
 
 .logo--sidebar {
-  color: #fff;
+  color: var(--color-white);
 }
