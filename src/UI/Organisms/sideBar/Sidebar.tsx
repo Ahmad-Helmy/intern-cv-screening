@@ -1,10 +1,10 @@
 import Logo from "../../Atoms/Logo/Logo.tsx";
-import NavLink from "../../Atoms/Navlink/NavLink.tsx";
+import NavLink from "../../Atoms/Navlink/Navlink.tsx";
 import settings from "../../../assets/icons/settings.svg";
 import candidates from "../../../assets/icons/users.svg";
 import "./SideBar.css";
 import Button from "../../Atoms/Buttons/Button.tsx";
-
+import signout from "../../../assets/icons/logout.svg";
 function Sidebar() {
   return (
     <>
@@ -26,14 +26,11 @@ function Sidebar() {
               <span>Role</span>
             </div>
           </div>
-
-          {/* <div className="sidebar_link sidebar_sign_out">
-            <span>Sign out</span>
-          </div> */}
           <Button
             text="Sign Out"
             variant="sign-out"
             onClick={() => console.log("Signed Out..")}
+            icon={<img src={signout} alt={"sign out"} />}
           />
         </div>
       </aside>

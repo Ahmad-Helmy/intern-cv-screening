@@ -1,10 +1,10 @@
 import "./App.css";
-import BackButton from "./UI/Atoms/TextButton/BackButton";
+import Sidebar from "./UI/Organisms/sideBar/Sidebar";
 
 function App() {
   return (
     <>
-      <div> Intern CV Screening </div>
+      <Sidebar />
     </>
   );
 }
