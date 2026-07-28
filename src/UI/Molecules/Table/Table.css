@@ -1,0 +1,18 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: var(--color-white, #ffffff);
+  border: 1px solid var(--border-color, #dfe3ee);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-header .table-data {
+  padding: 16px 20px;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary, #8a8fa3);
+}
