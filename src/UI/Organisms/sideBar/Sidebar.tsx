@@ -3,6 +3,7 @@ import NavLink from "../../Atoms/Navlink/NavLink.tsx";
 import settings from "../../../assets/icons/settings.svg";
 import candidates from "../../../assets/icons/users.svg";
 import "./SideBar.css";
+import Button from "../../Atoms/Buttons/Button.tsx";
 
 function Sidebar() {
   return (
@@ -26,9 +27,14 @@ function Sidebar() {
             </div>
           </div>
 
-          <div className="sidebar_link sidebar_sign_out">
+          {/* <div className="sidebar_link sidebar_sign_out">
             <span>Sign out</span>
-          </div>
+          </div> */}
+          <Button
+            text="Sign Out"
+            variant="sign-out"
+            onClick={() => console.log("Signed Out..")}
+          />
         </div>
       </aside>
     </>
