@@ -1,0 +1,13 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.candidate-table {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 1px solid #d1d5db;
+  font-family: Arial, sans-serif;
+}
