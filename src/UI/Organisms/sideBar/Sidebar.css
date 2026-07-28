@@ -8,11 +8,11 @@
   color: var(--color-white);
   font-family: var(--font-family);
   position: sticky;
+  height: 100vh;
 }
 
 .sidebar_top {
   padding: var(--spacing-6) var(--spacing-1) 0;
-  height: 100vh;
 }
 
 .sidebar_logo {
