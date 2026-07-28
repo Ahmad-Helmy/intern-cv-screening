@@ -28,7 +28,7 @@ function Sidebar() {
           </div>
           <Button
             text="Sign Out"
-            variant="sign-out"
+            variant="transparent"
             onClick={() => console.log("Signed Out..")}
             icon={<img src={signout} alt={"sign out"} />}
           />

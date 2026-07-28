@@ -7,7 +7,7 @@
   background: var(--sidebar-bg);
   color: var(--color-white);
   font-family: var(--font-family);
-  /* position: sticky; */
+  position: sticky;
 }
 
 .sidebar_top {

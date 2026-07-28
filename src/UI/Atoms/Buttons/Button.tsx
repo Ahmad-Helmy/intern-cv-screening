@@ -3,7 +3,7 @@ import React from "react";
 
 type ButtonProps = {
   text: string;
-  variant?: "primary" | "secondary" | "danger" | "sign-out";
+  variant?: "primary" | "secondary" | "danger" | "transparent";
   icon?: React.ReactNode;
   onClick: () => void;
 };
