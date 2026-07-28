@@ -1,0 +1,10 @@
+.login-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.login-body {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
