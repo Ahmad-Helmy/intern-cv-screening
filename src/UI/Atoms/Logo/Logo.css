@@ -1,9 +1,12 @@
 .logo {
   color: var(--text-primary);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold); /* static */
 }
 
 .logo span {
   color: var(--color-primary);
+}
+
+.logo--sidebar {
+  color: #fff;
 }
