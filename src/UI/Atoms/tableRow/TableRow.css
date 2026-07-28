@@ -1,0 +1,12 @@
+.table-row {
+  background-color: white;
+  transition: background-color 0.2s ease;
+}
+
+.table-row:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.table-row:hover {
+  background-color: #e5e7eb;
+}

@@ -1,0 +1,47 @@
+.badge {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  border-radius: var(--border-radius-lg);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+}
+
+.badge--default {
+  background-color: var(--badge-default-bg);
+  color: var(--badge-default-text);
+}
+
+.badge--imported {
+  background-color: var(--badge-imported-bg);
+  color: var(--badge-imported-text);
+}
+
+.badge--processing {
+  background-color: var(--badge-processing-bg);
+  color: var(--badge-processing-text);
+}
+
+.badge--evaluated {
+  background-color: var(--badge-evaluated-bg);
+  color: var(--badge-evaluated-text);
+}
+
+.badge--nominated {
+  background-color: var(--badge-nominated-bg);
+  color: var(--badge-nominated-text);
+}
+
+.badge--rejected {
+  background-color: var(--badge-rejected-bg);
+  color: var(--badge-rejected-text);
+}
+
+.badge--skill {
+  background-color: var(--bg-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
