@@ -1,0 +1,17 @@
+/* Shared Components */
+body {
+  background-color: var(--bg-page);
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  padding: 32px;
+  gap: 16px;
+}
