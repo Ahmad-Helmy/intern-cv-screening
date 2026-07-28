@@ -1,6 +1,6 @@
 type InputFieldProps = {
     placeholder: string;
-    name: string;
+    name?: string;
 };
 
 function InputField({ placeholder, name }: InputFieldProps) {
