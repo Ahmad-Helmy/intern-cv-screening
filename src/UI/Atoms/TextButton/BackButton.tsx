@@ -1,6 +1,5 @@
 import ArrowLeft from "../../../assets/icons/arrow-left.svg";
 import Button from "../Buttons/Button";
-import "./BackButton.css";
 
 const BackButton = ({ label = "Back", onClick }) => {
   return (
