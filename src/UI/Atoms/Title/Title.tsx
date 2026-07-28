@@ -8,6 +8,6 @@ type TitleProps = {
 
 export default function Title({type = 'medium', children, variant = 'primary'}: TitleProps) {
 
-    return <p className={`default title-${type} variant-${variant}`} >{children}</p>
+    return <p className={`title-${type} variant-${variant}`} >{children}</p>
 
 }

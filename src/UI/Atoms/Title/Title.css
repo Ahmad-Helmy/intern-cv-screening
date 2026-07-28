@@ -1,6 +1,3 @@
-.default {
-  font-family: var(--font-family);
-}
 .title-XXlarge {
   font-size: var(--font-size-2xl);
 }
