@@ -1,5 +1,5 @@
 /* Shared Components */
-body {
+main {
   background-color: var(--bg-page);
   font-family: var(--font-family);
   display: flex;
