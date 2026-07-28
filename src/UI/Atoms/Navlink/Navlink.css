@@ -1,0 +1,24 @@
+.sidebar_link {
+  min-height: var(--spacing-6);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius-md);
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.sidebar_link:hover,
+.sidebar_link:focus-visible {
+  background: var(--sidebar-hover);
+  color: var(--color-white);
+}
+
+.sidebar_link.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--font-weight-semibold);
+}

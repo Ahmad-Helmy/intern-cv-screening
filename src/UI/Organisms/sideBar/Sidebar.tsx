@@ -1,4 +1,7 @@
 import Logo from "../../Atoms/Logo/Logo.tsx";
+import NavLink from "../../Atoms/Navlink/NavLink.tsx";
+import settings from "../../../assets/icons/settings.svg";
+import candidates from "../../../assets/icons/users.svg";
 import "./SideBar.css";
 
 function Sidebar() {
@@ -9,13 +12,8 @@ function Sidebar() {
           <Logo type="sidebar" size="lg" />
 
           <nav className="sidebar_nav">
-            <div className="sidebar_link active">
-              <span>Candidates</span>
-            </div>
-
-            <div className="sidebar_link">
-              <span>Settings</span>
-            </div>
+            <NavLink label="Candidates" icon={candidates} />
+            <NavLink label="Settings" icon={settings} />
           </nav>
         </div>
 
