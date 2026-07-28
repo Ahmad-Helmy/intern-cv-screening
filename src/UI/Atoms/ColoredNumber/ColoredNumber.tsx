@@ -1,5 +1,5 @@
-import React from "react";
 import "./ColoredNumber.css";
+import { getColorClass, getdisplayScore } from "./ColoredNumber.utils";
 
 export const ColoredNumber = ({
   score,
@@ -12,26 +12,9 @@ export const ColoredNumber = ({
   size?: "small" | "large";
   percent?: boolean;
 }) => {
-  const getColorClass = () => {
-    if (score === null || score === undefined) {
-      return "score--none";
-    }
-    return `score--${level}`;
-  };
-
-  const getdisplayScore = () => {
-    if (score === null || score === undefined) {
-      return "—";
-    }
-    if (percent) {
-      return `${score}/100`;
-    }
-    return `${score}`;
-  };
-
   return (
-    <p className={`score-value ${getColorClass()} size-${size}`}>
-      {getdisplayScore()}
+    <p className={`score-value ${getColorClass(score, level)} size-${size}`}>
+      {getdisplayScore(score, percent)}
     </p>
   );
 };
