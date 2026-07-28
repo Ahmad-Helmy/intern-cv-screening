@@ -1,6 +1,9 @@
 .table-row {
-  background-color: white;
-  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--border-color, #e8e9ee);
+}
+
+.table-row:last-child {
+  border-bottom: none;
 }
 
 .table-row:nth-child(even) {

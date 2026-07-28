@@ -1,6 +1,5 @@
 .table-header {
-  background-color: #1f2937;
-  color: red;
+  background: var(--bg-subtle, #f7f8fc);
 }
 
 .table-header-cell {
