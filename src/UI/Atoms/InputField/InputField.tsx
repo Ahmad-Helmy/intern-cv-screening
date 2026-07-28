@@ -1,4 +1,9 @@
-function InputField({ placeholder, name }) {
+type InputFieldProps = {
+    placeholder: string;
+    name: string;
+};
+
+function InputField({ placeholder, name }: InputFieldProps) {
     return (
         <>
             <label>{name}</label>
@@ -8,8 +13,6 @@ function InputField({ placeholder, name }) {
                 placeholder={placeholder}
                 id="InputField" />
         </>
-    )
-
+    );
 }
-
 export default InputField;
