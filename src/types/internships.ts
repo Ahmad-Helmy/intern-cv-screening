@@ -1,10 +1,14 @@
+export interface InternshipStatus {
+  status: "Open" | "Closed" | "Draft";
+}
+
 export interface Internship {
   id: string;
   title: string;
   year: number;
   durationWeeks: number;
-  status: "Open" | "Closed" | "Draft";
+  status: InternshipStatus;
   externalJobId: string;
-  hasScoringCriteria: boolean | false;
-  scoringCriteriaId?: string;
+  hasScoringCriteria: boolean;
+  scoringCriteriaId: string;
 }

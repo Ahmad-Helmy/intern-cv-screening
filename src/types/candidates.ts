@@ -1,3 +1,15 @@
+export interface Status {
+  status: "Imported" | "Processing" | "Evaluated" | "Nominated" | "Rejected";
+}
+
+export interface VideoStatus {
+  status: "Pass" | "Fail";
+}
+
+export interface Recommendation {
+  status: "Strongly Recommended" | "Recommended" | "Not Recommended";
+}
+
 export interface CandidateProfile {
   graduationYear: number;
   skills: string[];
@@ -33,17 +45,13 @@ export interface Candidate {
   email: string;
   university: string;
   major: string;
-  gpa: number | 0;
-  status: "Nominated" | "Rejected" | "Under Review";
+  gpa: number;
+  status: Status;
   score: number;
   isNominated: boolean;
-  videoStatus: "Pass" | "Fail" | string;
-  recommendation:
-    | "Strongly Recommended"
-    | "Recommended"
-    | "Not Recommended"
-    | string;
-  phone?: string;
+  videoStatus: VideoStatus;
+  recommendation: Recommendation;
+  phone: string;
   trackPreference: string;
   profile?: CandidateProfile;
   evaluation?: CandidateEvaluation;
