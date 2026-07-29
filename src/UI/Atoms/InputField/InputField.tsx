@@ -9,7 +9,7 @@ type InputFieldProps = {
 function InputField({ placeholder, name, value, onChange }: InputFieldProps) {
   return (
     <div className="input-field-container">
-      <label>{name}</label>
+      <label className="label">{name}</label>
 
       <input
         type="text"
