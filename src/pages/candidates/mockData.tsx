@@ -8,6 +8,7 @@ export type CandidateStatus =
   | "Default";
 
 export type RawCandidate = {
+  readonly id: string;
   Candidate?: string;
   Email?: string;
   Uni?: string;
@@ -30,6 +31,7 @@ export const candidateColumns = [
 
 export const candidateData: RawCandidate[] = [
   {
+    id: "c-01",
     Candidate: "Mohammed Khalil",
     Email: "mohammed.khalil@aucegypt.edu",
     Uni: "The American University in Cairo",
@@ -40,6 +42,7 @@ export const candidateData: RawCandidate[] = [
     Nominated: "Yes",
   },
   {
+    id: "c-02",
     Candidate: "Laila Fathy",
     Email: "laila.fathy@cu.edu.eg",
     Uni: "Cairo University",
@@ -49,6 +52,7 @@ export const candidateData: RawCandidate[] = [
     Score: 76,
   },
   {
+    id: "c-03",
     Candidate: "Youssef Adel",
     Email: "youssef.adel@asu.edu.eg",
     Uni: "Ain Shams University",
@@ -59,6 +63,7 @@ export const candidateData: RawCandidate[] = [
     Nominated: "No",
   },
   {
+    id: "c-04",
     Candidate: "Nour Mostafa",
     Email: "nour.mostafa@guc.edu.eg",
     Uni: "German University in Cairo",
@@ -69,6 +74,7 @@ export const candidateData: RawCandidate[] = [
     Nominated: "Yes",
   },
   {
+    id: "c-05",
     Candidate: "Omar Sherif",
     Email: "omar.sherif@alexu.edu.eg",
     Uni: "Alexandria University",
@@ -78,6 +84,7 @@ export const candidateData: RawCandidate[] = [
     Score: 71,
   },
   {
+    id: "c-06",
     Candidate: "Salma Reda",
     Email: "salma.reda@nu.edu.eg",
     Uni: "Nile University",
@@ -87,6 +94,7 @@ export const candidateData: RawCandidate[] = [
     Score: 84,
   },
   {
+    id: "c-07",
     Candidate: "Karim Hassan",
     Email: "karim.hassan@aucegypt.edu",
     Uni: "The American University in Cairo",
@@ -96,6 +104,7 @@ export const candidateData: RawCandidate[] = [
     Score: 68,
   },
   {
+    id: "c-08",
     Candidate: "Mariam Tarek",
     Email: "mariam.tarek@cu.edu.eg",
     Uni: "Cairo University",
@@ -106,6 +115,7 @@ export const candidateData: RawCandidate[] = [
     Nominated: "Yes",
   },
   {
+    id: "c-09",
     Candidate: "Ahmed Nabil",
     Email: "ahmed.nabil@zewailcity.edu.eg",
     Uni: "Zewail City of Science and Technology",
@@ -115,6 +125,7 @@ export const candidateData: RawCandidate[] = [
     Score: 59,
   },
   {
+    id: "c-10",
     Candidate: "Hana Wael",
     Email: "hana.wael@guc.edu.eg",
     Uni: "German University in Cairo",
