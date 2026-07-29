@@ -5,6 +5,7 @@ import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
 import Table from "../../UI/Molecules/Table/Table";
 import { candidateColumns, candidateData } from "./mockData";
 import { mapCandidatesToRows } from "./candidatesService";
+import Card from "../../UI/Atoms/Card/Card";
 
 const Candidates = () => {
   const rows = mapCandidatesToRows(candidateData);
@@ -17,8 +18,9 @@ const Candidates = () => {
           value="Select an internship to review its applicants"
         />
       </div>
-
-      <Table columns={candidateColumns} data={rows} />
+      <Card table>
+        <Table columns={candidateColumns} data={rows} />
+      </Card>
     </DefaultTemplate>
   );
 };
