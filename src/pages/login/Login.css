@@ -6,3 +6,59 @@
   justify-content: center;
   background-color: var(--bg-page);
 }
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-card .card {
+  text-align: left;
+  padding: var(--spacing-10);
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.login-card .card * {
+  margin: 0;
+}
+
+.login-card .card-info-title .variant-primary {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.05em;
+}
+
+.login-branding {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.login-card .card .login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+  margin-top: var(--spacing-8);
+}
+
+.login-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.login-fields .input-field-container,
+.login-fields .input-field {
+  width: 100%;
+}
+
+.login-password-field .input-field {
+  -webkit-text-security: disc;
+}
+
+.login-page button {
+  width: 100%;
+}
