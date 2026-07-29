@@ -3,7 +3,7 @@ export interface InternshipStatus {
 }
 
 export interface Internship {
-  id: string;
+  readonly id: string;
   title: string;
   year: number;
   durationWeeks: number;

@@ -1,5 +1,5 @@
 export interface ScoringCriteria {
-  id: string;
+  readonly id: string;
   internshipId: string;
   name: string;
   isActive: boolean;

@@ -40,7 +40,7 @@ export interface CandidateEvaluation {
 }
 
 export interface Candidate {
-  id: string;
+  readonly id: string;
   name: string;
   email: string;
   university: string;
