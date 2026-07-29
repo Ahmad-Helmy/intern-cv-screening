@@ -2,3 +2,19 @@
   display: flex;
   background-color: var(--color-background);
 }
+
+.candidate-cell .info-title > *:first-child {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.candidate-cell .info-title > *:last-child {
+  font-size: var(--font-size-xs);
+  font-weight: normal;
+}
+
+.candidates-table td,
+.candidates-table .table-header .table-data {
+  font-weight: var(--font-weight-medium);
+  text-align: start;
+}
