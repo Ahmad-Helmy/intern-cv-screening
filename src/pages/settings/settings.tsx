@@ -1,7 +1,6 @@
 import React from "react";
 import "./settings.css";
 import "../../index.css";
-import DefaultTemplate from "../../UI/DefaultTemplates/DefaultTemplate";
 import Badge from "../../UI/Atoms/Badge/Badge.tsx";
 import Button from "../../UI/Atoms/Buttons/Button.tsx";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
@@ -13,7 +12,7 @@ const suitcase = <img src={suitcaseIcon} alt="suicase-icon" />;
 
 const Settings: React.FC = () => {
   return (
-    <DefaultTemplate>
+    <>
       <header>
         <InfoTitle
           label="Settings"
@@ -24,12 +23,11 @@ const Settings: React.FC = () => {
       <div className="settings">
         <div className="internships-panel">
           <CardInfo title="Internships" icon={suitcase}>
-            
             <div className="card-info-header-row">
               <Badge text={"2"} type="default" />
               <Button text="+ New" variant="primary" onClick={() => {}} />
             </div>
-              <div className="intersnhip-list">
+            <div className="intersnhip-list">
               <div className="internship-card">
                 <InfoTitle
                   label="EDC Software Engineering Internship 2026"
@@ -46,7 +44,7 @@ const Settings: React.FC = () => {
           </CardInfo>
         </div>
       </div>
-    </DefaultTemplate>
+    </>
   );
 };
 

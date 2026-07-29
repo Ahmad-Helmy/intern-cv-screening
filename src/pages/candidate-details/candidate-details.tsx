@@ -1,6 +1,5 @@
 import React from "react";
 import "./candidate-details.css";
-import DefaultTemplate from "../../UI/DefaultTemplates/DefaultTemplate";
 import BackButton from "../../UI/Atoms/TextButton/BackButton";
 import Badge from "../../UI/Atoms/Badge/Badge";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
@@ -41,7 +40,7 @@ const weaknesses = [
 
 const CandidateDetails: React.FC = () => {
   return (
-    <DefaultTemplate>
+    <>
       <div className="details-conatiner card-info-left-aligned">
         <div className="back-btn">
           <BackButton
@@ -242,7 +241,7 @@ const CandidateDetails: React.FC = () => {
           </section>
         </div>
       </div>
-    </DefaultTemplate>
+    </>
   );
 };
 
