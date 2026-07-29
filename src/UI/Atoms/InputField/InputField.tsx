@@ -2,7 +2,7 @@ import "./InputField.css";
 type InputFieldProps = {
   placeholder?: string;
   name: string;
-  value?: string;
+  value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
