@@ -1,5 +1,4 @@
 import "./TableHeader.css";
-import { TableRow } from "../tableRow/TableRow";
 type TableHeaderProps = {
   columns: string[];
 };
