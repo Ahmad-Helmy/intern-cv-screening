@@ -14,11 +14,11 @@ const statusBadgeType: Partial<Record<CandidateStatus, BadgeType>> = {
   Rejected: "rejected",
 };
 
-const getBadgeTypeForStatus = (status: CandidateStatus): BadgeType => {
+export const getBadgeTypeForStatus = (status: CandidateStatus): BadgeType => {
   return statusBadgeType[status] || "default";
 };
 
-const getScoreLevel = (score: number): "high" | "mid" | "low" => {
+export const getScoreLevel = (score: number): "high" | "mid" | "low" => {
   if (score >= 85) return "high";
   if (score >= 70) return "mid";
   return "low";

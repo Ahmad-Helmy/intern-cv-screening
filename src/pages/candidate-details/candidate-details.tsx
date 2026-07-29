@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router";
 import "./candidate-details.css";
 import BackButton from "../../UI/Atoms/TextButton/BackButton";
 import Badge from "../../UI/Atoms/Badge/Badge";
@@ -6,6 +7,11 @@ import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import ColoredNumber from "../../UI/Atoms/ColoredNumber/ColoredNumber";
 import BarTitle from "../../UI/Molecules/BarTitle/BarTitle";
 import Table from "../../UI/Molecules/Table/Table";
+import { candidateData } from "../candidates/mockData";
+import {
+  getBadgeTypeForStatus,
+  getScoreLevel,
+} from "../candidates/candidatesService";
 import barChartIcon from "../../assets/icons/bar-chart.svg";
 import videoIcon from "../../assets/icons/video.svg";
 import strengthsIcon from "../../assets/icons/check-circle.svg";
@@ -39,20 +45,46 @@ const weaknesses = [
 ];
 
 const CandidateDetails: React.FC = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const candidate = candidateData.find((c) => c.id === id);
+
+  if (!candidate) {
+    return (
+      <div className="details-conatiner card-info-left-aligned">
+        <div className="back-btn">
+          <BackButton
+            label="Back to Candidates"
+            onClick={() => navigate("/candidates")}
+          />
+        </div>
+        <CardInfo title="Candidate not found">
+          <p className="description">
+            No candidate matches the id &quot;{id}&quot;.
+          </p>
+        </CardInfo>
+      </div>
+    );
+  }
+
+  const name = candidate.Candidate ?? "-";
+  const score = candidate.Score;
+
   return (
     <>
       <div className="details-conatiner card-info-left-aligned">
         <div className="back-btn">
           <BackButton
             label="Back to Candidates"
-            onClick={() => window.history.back()}
+            onClick={() => navigate(-1)}
           />
         </div>
 
-        <section className="candidate-summary" aria-label="Mohammed Khalil">
-          <CardInfo title="Mohammed Khalil">
+        <section className="candidate-summary" aria-label={name}>
+          <CardInfo title={name}>
             <div className="candidate-info">
-              <span>mohammed.khalil@university.edu</span>
+              <span>{candidate.Email ?? "-"}</span>
+              {/* TODO: phone and track are not on RawCandidate yet */}
               <span className="candidate-info__separator">·</span>
               <span>+351 942 318 705</span>
               <span className="candidate-info__separator" aria-hidden="true">
@@ -62,7 +94,14 @@ const CandidateDetails: React.FC = () => {
             </div>
 
             <div className="candidate-status" aria-label="Candidate status">
-              <Badge text="Nominated" type="nominated" />
+              <Badge
+                text={candidate.Status}
+                type={
+                  candidate.Status
+                    ? getBadgeTypeForStatus(candidate.Status)
+                    : "default"
+                }
+              />
               <Badge text="Video: Pass" type="evaluated" />
               <Badge text="Strongly Recommended" type="nominated" />
             </div>
@@ -75,21 +114,27 @@ const CandidateDetails: React.FC = () => {
               <CardInfo title="Academic Profile">
                 <div className="field-row">
                   <p className="description">
-                    University: The American University in Cairo
+                    University: {candidate.Uni ?? "-"}
                   </p>
                 </div>
                 <div className="field-row">
-                  <p className="description">Major: Computer Science</p>
+                  <p className="description">Major: {candidate.Major ?? "-"}</p>
                 </div>
                 <div className="field-row">
-                  <p className="description">GPA: 3.78</p>
+                  <p className="description">GPA: {candidate.GPA ?? "-"}</p>
                 </div>
                 <div className="field-row">
+                  {/* TODO: graduation year is not on RawCandidate yet */}
                   <p className="description">Graduation Year: 2027</p>
                 </div>
               </CardInfo>
             </section>
 
+            {/* TODO: everything below is still illustrative — skills,
+                languages, projects, experience, certifications,
+                extracurriculars, the video scores, the breakdown and the
+                report have no counterpart on RawCandidate yet. They become
+                real when mockData carries a profile and an evaluation. */}
             <section aria-label="Skills">
               <CardInfo title="Skills">
                 <div className="skills-badges">
@@ -178,7 +223,7 @@ const CandidateDetails: React.FC = () => {
             <section aria-label="AI Evaluation Report">
               <CardInfo title="AI Evaluation Report">
                 <p className="description">
-                  Mohammed Khalil demonstrates strong alignment with the
+                  {name} demonstrates strong alignment with the
                   Software Engineering 2026 criteria. Technical skills and
                   project work are the primary contributors to the overall
                   score, weighted against academic performance and
@@ -190,7 +235,11 @@ const CandidateDetails: React.FC = () => {
           </div>
           <section className="right-container" aria-label="Candidate Scores">
             <CardInfo title="Score Overview" icon={<img src={barChartIcon} />}>
-              <ColoredNumber score={91} level="high" percent />
+              <ColoredNumber
+                score={score}
+                level={score !== undefined ? getScoreLevel(score) : null}
+                percent
+              />
               <p>
                 Top performer across technical and communication dimensions;
                 clear nomination.
