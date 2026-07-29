@@ -1,34 +1,24 @@
-import Button from "../../UI/Atoms/Buttons/Button";
-import Card from "../../UI/Atoms/Card/Card";
-import InputField from "../../UI/Atoms/InputField/InputField";
-import Logo from "../../UI/Atoms/Logo/Logo";
-import Title from "../../UI/Atoms/Title/Title";
-import "./login.css";
-export default function Login() {
+import CardInfo from "../../Molecules/CardInfo/CardInfo";
+import Logo from "../../Atoms/Logo/Logo";
+import Title from "../../Atoms/Title/Title";
+import Button from "../../Atoms/Button/Button";
+import "./LoginPage.css";
+
+export default function LoginPage() {
+  const handleSignIn = () => {
+    // TODO: wire up auth logic
+  };
+
   return (
-    <div className="login-card">
-      <Card>
-        <div className="login-header">
-          <Title type="small" variant="muted">
-            Celfخcus
-          </Title>
-          <Logo type="login" size="xl" />
-          <Title type="small" variant="muted">
-            Sign in to your admin account
-          </Title>
-        </div>
-        <div className="login-body">
-          <InputField
-            name="Email Address"
-            placeholder="Enter your email address"
-          />
-          <InputField name="Password" placeholder="Enter your password" />
-          <Button
-            text="Sign in"
-            onClick={() => console.log("sign in clicked!")}
-          />
-        </div>
-      </Card>
+    <div className="login-page">
+      <CardInfo title="CELFOCUS">
+        <Logo type="login" size="xl" />
+        <Title type="small" variant="secondary">
+          Sign in to your admin account
+        </Title>
+
+        <Button text="Sign in" variant="primary" onClick={handleSignIn} />
+      </CardInfo>
     </div>
   );
 }
