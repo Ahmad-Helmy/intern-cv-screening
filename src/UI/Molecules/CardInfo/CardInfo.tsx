@@ -4,18 +4,27 @@ import "./CardInfo.css";
 
 type CardInfoProps = {
   children: React.ReactNode;
-  title: string;
+  title: string | React.ReactNode;
   icon?: React.ReactNode;
 };
 
 export default function CardInfo({ children, title, icon }: CardInfoProps) {
+  const getTitle = () => {
+    if (typeof title === "string") {
+      return (
+        <Title type="medium" variant="primary">
+          {title}
+        </Title>
+      );
+    }
+
+    return title;
+  };
   return (
     <Card>
       <div className="card-info-title">
         {icon && <span className="card-info-icon">{icon}</span>}
-        <Title type="medium" variant="primary">
-          {title}
-        </Title>
+        {getTitle()}
       </div>
       {children}
     </Card>
