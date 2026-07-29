@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate } from "react-router";
+import { Navigate, useLocation } from "react-router";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import Logo from "../../UI/Atoms/Logo/Logo";
 import Title from "../../UI/Atoms/Title/Title";
@@ -13,9 +13,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { user, login } = useAuth();
+  const location = useLocation();
+
+  // ProtectedRoute passes the page they were trying to reach
+  const from =
+    (location.state as { from?: string } | null)?.from ?? "/candidates";
 
   // already signed in — nothing to do on this page
-  if (user) return <Navigate to="/candidates" replace />;
+  if (user) return <Navigate to={from} replace />;
 
   const handleSignIn = () => {
     if (!email.trim() || !password.trim()) {
