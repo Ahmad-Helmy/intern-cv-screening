@@ -1,4 +1,26 @@
 .candidates {
   display: flex;
-  background-color: var(--color-background);
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+.label-dropdown {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+.candidates-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.candidates-header-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+.candidates-actions {
+  display: flex;
+  justify-content: left;
+  gap: var(--spacing-3);
 }
