@@ -121,7 +121,7 @@ const CandidateDetails: React.FC = () => {
 
             <section aria-label="Certifications">
               <CardInfo title="Certifications">
-                <p className="description">No certifications listed</p>
+                <p className="description">-</p>
               </CardInfo>
             </section>
 
