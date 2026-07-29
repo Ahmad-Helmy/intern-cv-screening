@@ -1,11 +1,11 @@
 import "./App.css";
 import DefaultTemplate from "./UI/DefaultTemplates/DefaultTemplate";
+import Settings from "./pages/settings/settings";
+
 function App() {
   return (
     <>
-      <DefaultTemplate>
-        <div>Intern CV Screening</div>
-      </DefaultTemplate>
+      <Settings />
     </>
   );
 }
