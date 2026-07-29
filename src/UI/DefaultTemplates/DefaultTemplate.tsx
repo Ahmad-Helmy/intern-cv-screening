@@ -9,7 +9,8 @@ const DefaultTemplate = ({ children }: props) => {
   return (
     <>
       <Sidebar />
-      <main className="main-container">{children}</main>
+
+      <div className="main-container">{children}</div>
     </>
   );
 };
