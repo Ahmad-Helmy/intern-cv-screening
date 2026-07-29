@@ -1,7 +1,7 @@
 import "./InputField.css";
 type InputFieldProps = {
   placeholder?: string;
-  name: string;
+  name?: string;
   value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -9,7 +9,7 @@ type InputFieldProps = {
 function InputField({ placeholder, name, value, onChange }: InputFieldProps) {
   return (
     <div className="input-field-container">
-      <label className="label">{name}</label>
+      {name ? <label className="label">{name}</label> : null}
 
       <input
         type="text"
