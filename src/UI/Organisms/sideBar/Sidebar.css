@@ -1,5 +1,5 @@
 .sidebar {
-  max-width: vae(--spacing-sidebar);
+  max-width: var(--spacing-sidebar);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
