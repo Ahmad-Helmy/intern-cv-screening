@@ -3,7 +3,7 @@ import "./candidate-details.css";
 import DefaultTemplate from "../../UI/DefaultTemplates/DefaultTemplate";
 import BackButton from "../../UI/Atoms/TextButton/BackButton";
 import Badge from "../../UI/Atoms/Badge/Badge";
-import Card from "../../UI/Atoms/Card/Card";
+import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 
 const CandidateDetails: React.FC = () => {
   return (
@@ -16,10 +16,8 @@ const CandidateDetails: React.FC = () => {
           />
         </div>
 
-        <section className="candidate-summary">
-          <Card>
-            <h1 id="candidate-name">Mohammed Khalil</h1>
-
+        <section className="candidate-summary" aria-label="Mohammed Khalil">
+          <CardInfo title="Mohammed Khalil">
             <div className="candidate-info">
               <span>mohammed.khalil@university.edu</span>
               <span className="candidate-info__separator">·</span>
@@ -35,7 +33,7 @@ const CandidateDetails: React.FC = () => {
               <Badge text="Video: Pass" type="evaluated" />
               <Badge text="Strongly Recommended" type="nominated" />
             </div>
-          </Card>
+          </CardInfo>
         </section>
       </div>
     </DefaultTemplate>

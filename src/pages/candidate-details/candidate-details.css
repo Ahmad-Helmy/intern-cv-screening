@@ -1,9 +1,4 @@
-.sidebar:has(+ .main-container > .details-conatiner) {
-  right: auto;
-  width: var(--spacing-sidebar);
-}
-
-.main-container:has(> .details-conatiner) {
+.main-container:has(.details-conatiner) {
   width: calc(100% - var(--spacing-sidebar));
   margin-left: var(--spacing-sidebar);
   padding-left: var(--spacing-8);
@@ -51,9 +46,12 @@
   align-self: center;
 }
 
-.details-conatiner .candidate-summary h1,
-.details-conatiner > .card h1 {
-  margin: 0 0 var(--spacing-3);
+.details-conatiner .candidate-summary .card-info-title {
+  margin-bottom: var(--spacing-3);
+}
+
+.details-conatiner .candidate-summary .card-info-title .title-medium {
+  margin: 0;
   color: var(--candidate-primary-text);
   font-size: var(--font-size-2xl);
   line-height: 1.2;
