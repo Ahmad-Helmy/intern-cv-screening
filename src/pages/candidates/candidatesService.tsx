@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router";
 import Badge, { type BadgeType } from "../../UI/Atoms/Badge/Badge";
 import ColoredNumber from "../../UI/Atoms/ColoredNumber/ColoredNumber";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
@@ -46,12 +47,16 @@ const renderText = (value?: string): ReactNode => {
   return value && value.trim() !== "" ? value : FALLBACK;
 };
 
-const renderCandidate = (name?: string, email?: string): ReactNode => {
+const renderCandidate = (
+  id: string,
+  name?: string,
+  email?: string,
+): ReactNode => {
   if (!name || name.trim() === "") return FALLBACK;
   return (
-    <div className="candidate-cell">
+    <Link className="candidate-cell" to={`/candidates/${id}`}>
       <InfoTitle label={name} value={email || FALLBACK} />
-    </div>
+    </Link>
   );
 };
 
@@ -59,7 +64,11 @@ export const mapCandidateToRow = (
   candidate: RawCandidate,
 ): Record<string, ReactNode> => {
   return {
-    Candidate: renderCandidate(candidate.Candidate, candidate.Email),
+    Candidate: renderCandidate(
+      candidate.id,
+      candidate.Candidate,
+      candidate.Email,
+    ),
     Uni: renderText(candidate.Uni),
     Major: renderText(candidate.Major),
     GPA: renderText(candidate.GPA),
