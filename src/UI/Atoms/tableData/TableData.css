@@ -1,8 +1,7 @@
 .table-data {
-  padding: 16px 20px;
-  text-align: left;
-  font-family: "Inter", sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--text-primary, #111936);
+  padding: var(--spacing-4) var(--spacing-5);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
 }

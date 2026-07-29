@@ -1,5 +1,5 @@
 .table-row {
-  border-bottom: 1px solid var(--border-color, #e8e9ee);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .table-row:last-child {
@@ -7,9 +7,9 @@
 }
 
 .table-row:nth-child(even) {
-  background-color: #f9fafb;
+  background-color: var(--bg-subtle);
 }
 
 .table-row:hover {
-  background-color: #e5e7eb;
+  background-color: var(--bg-page);
 }
