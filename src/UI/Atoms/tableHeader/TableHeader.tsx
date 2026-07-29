@@ -7,7 +7,9 @@ export function TableHeader({ columns }: TableHeaderProps) {
   return (
     <thead className="table-header">
       {columns.map((column) => (
-        <th key={column}>{column}</th>
+        <th className="table-header-cell" key={column}>
+          {column}
+        </th>
       ))}
     </thead>
   );
