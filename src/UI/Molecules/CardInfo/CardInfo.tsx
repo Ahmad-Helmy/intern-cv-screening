@@ -6,9 +6,15 @@ type CardInfoProps = {
   children: React.ReactNode;
   title: string | React.ReactNode;
   icon?: React.ReactNode;
+  isTable?: boolean;
 };
 
-export default function CardInfo({ children, title, icon }: CardInfoProps) {
+export default function CardInfo({
+  children,
+  title,
+  icon,
+  isTable = false,
+}: CardInfoProps) {
   const getTitle = () => {
     if (typeof title === "string") {
       return (
@@ -21,7 +27,7 @@ export default function CardInfo({ children, title, icon }: CardInfoProps) {
     return title;
   };
   return (
-    <Card>
+    <Card isTable={isTable}>
       <div className="card-info-title">
         {icon && <span className="card-info-icon">{icon}</span>}
         {getTitle()}

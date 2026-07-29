@@ -1,14 +1,19 @@
-import React, { useState } from "react";
 import "./candidates.css";
 import DefaultTemplate from "../../UI/DefaultTemplates/DefaultTemplate";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
+import Table from "../../UI/Molecules/Table/Table";
+import { candidateColumns, candidateData } from "./mockData";
+import { mapCandidatesToRows } from "./candidatesService";
+import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import Title from "../../UI/Atoms/Title/Title";
 import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
-import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
+import { useState } from "react";
 
-const Candidates: React.FC = () => {
+const Candidates = () => {
+  const rows = mapCandidatesToRows(candidateData);
+
   const [searchValue, setSearchValue] = useState("");
   const [selectedInternship, setSelectedInternship] = useState("");
 
@@ -22,7 +27,7 @@ const Candidates: React.FC = () => {
           <Title type="medium" variant="primary">
             {selectedInternship}
           </Title>
-          <Badge type="evaluated" text={"90" + " candidates"} />
+          <Badge type="evaluated" text={rows.length + " candidates"} />
         </div>
 
         <div className="candidates-actions">
@@ -80,8 +85,13 @@ const Candidates: React.FC = () => {
             }}
           />
         </div>
-        <CardInfo title={getCardTitle()}>
-          <div className="candidates__table">{/* Table component */}</div>
+        <CardInfo title={getCardTitle()} isTable>
+          <div className="candidates-table">
+            <Table
+              columns={candidateColumns}
+              data={selectedInternship ? rows : []}
+            />
+          </div>
         </CardInfo>
       </div>
     </DefaultTemplate>

@@ -5,7 +5,8 @@
 .table-header-cell {
   padding: var(--spacing-3) var(--spacing-4);
   text-align: left;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
-  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  gap: var(--spacing-1);
 }

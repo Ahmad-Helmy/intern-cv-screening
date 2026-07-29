@@ -1,7 +1,15 @@
 import "./Card.css";
 
-const Card = ({ children }: { children: React.ReactNode }) => {
-  return <div className="card">{children}</div>;
+const Card = ({
+  children,
+  isTable = false,
+}: {
+  children: React.ReactNode;
+  isTable?: boolean;
+}) => {
+  return (
+    <div className={`card ${isTable ? "table-card" : ""}`}>{children}</div>
+  );
 };
 
 export default Card;
