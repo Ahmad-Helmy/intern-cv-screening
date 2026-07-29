@@ -13,8 +13,8 @@ function Sidebar() {
           <Logo type="sidebar" size="lg" />
 
           <nav className="sidebar_nav">
-            <NavLink label="Candidates" icon={candidates} />
-            <NavLink label="Settings" icon={settings} />
+            <NavLink label="Candidates" to="/candidates" icon={candidates} />
+            <NavLink label="Settings" to="/settings" icon={settings} />
           </nav>
         </div>
 
