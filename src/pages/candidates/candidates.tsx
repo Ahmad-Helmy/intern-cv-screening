@@ -1,11 +1,10 @@
-import React from "react";
 import "./candidates.css";
 import DefaultTemplate from "../../UI/DefaultTemplates/DefaultTemplate";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
 import Table from "../../UI/Molecules/Table/Table";
 import { candidateColumns, candidateData } from "./mockData";
 import { mapCandidatesToRows } from "./candidatesService";
-import Card from "../../UI/Atoms/Card/Card";
+import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 
 const Candidates = () => {
   const rows = mapCandidatesToRows(candidateData);
@@ -18,11 +17,11 @@ const Candidates = () => {
           value="Select an internship to review its applicants"
         />
       </div>
-      <Card table>
+      <CardInfo title="Candidates" isTable>
         <div className="candidates-table">
           <Table columns={candidateColumns} data={rows} />
         </div>
-      </Card>
+      </CardInfo>
     </DefaultTemplate>
   );
 };
