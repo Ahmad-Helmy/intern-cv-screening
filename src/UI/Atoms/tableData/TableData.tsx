@@ -5,10 +5,6 @@ type TableDataProps = {
   children: ReactNode;
 };
 
-export function TableData({children}: TableDataProps) {
-  return (
-    <td className="table-data">
-      {children}
-    </td>
-  );
+export function TableData({ children }: TableDataProps) {
+  return <td className="table-data">{children}</td>;
 }
