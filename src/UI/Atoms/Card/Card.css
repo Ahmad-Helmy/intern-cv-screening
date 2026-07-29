@@ -6,3 +6,7 @@
   margin-bottom: var(--spacing-5);
   box-shadow: var(--shadow-lg);
 }
+
+.table-card {
+  padding: 0px !important;
+}

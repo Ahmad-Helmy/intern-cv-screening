@@ -1,5 +1,26 @@
 .settings {
+  display: block;
+  width: 100%;
+}
+
+.internships-panel {
+  width: 100%;
+}
+
+.internship-list {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-5);
+}
+
+.internship-card {
+  padding: var(--spacing-4);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.internship-card:hover {
+  background: var(--bg-subtle);
 }

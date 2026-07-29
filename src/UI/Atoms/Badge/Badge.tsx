@@ -1,6 +1,6 @@
 import "./Badge.css";
 
-type BadgeType =
+export type BadgeType =
   | "imported"
   | "processing"
   | "evaluated"
