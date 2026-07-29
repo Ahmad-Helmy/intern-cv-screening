@@ -1,3 +1,4 @@
+import "./InputField.css";
 type InputFieldProps = {
   placeholder?: string;
   name: string;
@@ -7,7 +8,7 @@ type InputFieldProps = {
 
 function InputField({ placeholder, name, value, onChange }: InputFieldProps) {
   return (
-    <>
+    <div className="input-field-container">
       <label>{name}</label>
 
       <input
@@ -16,9 +17,9 @@ function InputField({ placeholder, name, value, onChange }: InputFieldProps) {
         name={name}
         value={value}
         onChange={onChange}
-        id="InputField"
+        className="input-field"
       />
-    </>
+    </div>
   );
 }
 export default InputField;
