@@ -1,13 +1,13 @@
 .sidebar {
-  max-width: 240px;
-  inset: 0 0;
+  max-width: var(--spacing-sidebar);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: var(--sidebar-bg);
   color: var(--color-white);
   font-family: var(--font-family);
-  position: sticky;
+  position: fixed;
+  inset: 0 0;
   height: 100vh;
 }
 
