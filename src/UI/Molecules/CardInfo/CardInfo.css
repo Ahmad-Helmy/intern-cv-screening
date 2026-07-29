@@ -1,0 +1,11 @@
+.card-info-title {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.card-info-icon {
+  display: flex;
+  align-items: flex-start;
+}
