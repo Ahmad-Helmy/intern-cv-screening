@@ -1,22 +1,5 @@
-#root:has(.details-conatiner) {
-  width: 100%;
-  max-width: none;
-}
-
-.main-container:has(.details-conatiner) {
-  width: calc(100% - var(--spacing-sidebar));
-  margin-left: var(--spacing-sidebar);
-  padding-left: var(--spacing-8);
-  box-sizing: border-box;
-}
-
+/* Page layout */
 .details-conatiner {
-  --candidate-accent-color: var(--color-primary);
-  --candidate-primary-text: var(--text-primary);
-  --candidate-secondary-text: var(--text-muted);
-  --candidate-table-header-background: var(--bg-subtle);
-  --candidate-table-border: var(--border-color);
-
   display: flex;
   flex-direction: column;
   gap: var(--spacing-6);
@@ -102,44 +85,113 @@
 }
 
 .details-conatiner .left-container {
-  flex: 1 1 0;
+  flex: 1;
 }
 
 .details-conatiner .right-container {
-  flex: 2 1 0;
+  flex: 2;
 }
 
-.details-conatiner .card {
+/* Shared CardInfo alignment */
+.details-conatiner.card-info-left-aligned .card {
   width: 100%;
   margin-bottom: 0;
   padding: 30px 34px 20px;
   box-sizing: border-box;
-  box-shadow: 0 2px 10px rgba(30, 40, 80, 0.12);
+  text-align: left;
+  box-shadow: var(--shadow-lg);
   text-align: left;
 }
 
-.details-conatiner .card-title {
-  display: flex;
+.details-conatiner.card-info-left-aligned .card-info-title {
   align-items: center;
+  justify-content: flex-start;
   gap: 10px;
   margin: 0 0 32px;
   color: var(--candidate-primary-text);
-  font-size: 25px;
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
 }
 
-.details-conatiner .card-icon {
-  display: inline-flex;
+/* Back button */
+.details-conatiner .back-btn {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  color: var(--candidate-accent-color);
-  font-size: 22px;
-  font-weight: var(--font-weight-bold);
+}
+
+.details-conatiner .back-btn .button {
+  gap: var(--spacing-2);
+  padding: 0;
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.details-conatiner .back-button__icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Candidate summary */
+.details-conatiner .candidate-summary {
+  width: min(100%, 960px);
+  margin-inline: auto;
+}
+
+.details-conatiner .candidate-summary .card-info-title {
+  margin-bottom: var(--spacing-3);
+}
+
+.details-conatiner .candidate-summary .title-medium {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  line-height: 1.2;
+}
+
+.details-conatiner .candidate-info,
+.details-conatiner .candidate-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.details-conatiner .candidate-info {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.details-conatiner .candidate-info__separator {
+  color: var(--text-muted);
+}
+
+.details-conatiner .candidate-status {
+  margin-top: var(--spacing-4);
+}
+
+/* Score cards */
+.details-conatiner .bar-title + .bar-title {
+  margin-top: var(--spacing-8);
 }
 
 .details-conatiner .table-wrapper {
   width: 100%;
   overflow-x: auto;
+}
+
+.details-conatiner .table-wrapper .table-header {
+  display: table-row;
+}
+
+.details-conatiner .table-wrapper .table-header th {
+  padding: var(--spacing-4) var(--spacing-5);
+  box-sizing: border-box;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
 }
 .details-conatiner .score-table {
   width: 100%;
@@ -205,7 +257,7 @@
   margin: 0;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 750px) {
   .details-conatiner .details-main-container {
     flex-direction: column;
   }
