@@ -54,7 +54,6 @@
 .details-conatiner .candidate-summary .card-info-title {
   margin-bottom: var(--spacing-3);
 }
-
 .details-conatiner .candidate-summary .card-info-title .title-medium {
   margin: 0;
   color: var(--candidate-primary-text);
@@ -77,13 +76,11 @@
   gap: var(--spacing-2);
   color: var(--text-secondary);
   font-size: var(--font-size-base);
-  text-align: left;
 }
 
 .details-conatiner .candidate-info__separator {
   color: var(--text-muted);
 }
-
 .details-conatiner .candidate-status,
 .details-conatiner .status {
   gap: var(--spacing-2);
@@ -115,16 +112,17 @@
 .details-conatiner .card {
   width: 100%;
   margin-bottom: 0;
-  padding: 28px 32px 16px;
+  padding: 30px 34px 20px;
   box-sizing: border-box;
   box-shadow: 0 2px 10px rgba(30, 40, 80, 0.12);
+  text-align: left;
 }
 
 .details-conatiner .card-title {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 0 28px;
+  margin: 0 0 32px;
   color: var(--candidate-primary-text);
   font-size: 25px;
   font-weight: var(--font-weight-bold);
@@ -143,7 +141,6 @@
   width: 100%;
   overflow-x: auto;
 }
-
 .details-conatiner .score-table {
   width: 100%;
   min-width: 620px;
@@ -151,44 +148,35 @@
   border-collapse: collapse;
   table-layout: fixed;
 }
-
 .details-conatiner .score-table th,
 .details-conatiner .score-table td {
   padding: var(--spacing-5);
   border-bottom: 1px solid var(--candidate-table-border);
   text-align: left;
 }
-
 .details-conatiner .score-table th {
-  background-color: var(--candidate-table-header-background);
+  background: var(--candidate-table-header-background);
   color: var(--candidate-secondary-text);
   font-size: 16px;
   font-weight: var(--font-weight-bold);
 }
-
 .details-conatiner .score-table td {
-  background-color: var(--color-white);
+  background: var(--color-white);
   color: var(--candidate-primary-text);
   font-size: var(--font-size-lg);
-  font-weight: 400;
 }
-
 .details-conatiner .score-table tbody tr:last-child td {
   border-bottom: 0;
 }
-
 .details-conatiner .score-table th:first-child {
   width: 47%;
 }
-
 .details-conatiner .score-table th:nth-child(2) {
   width: 14%;
 }
-
 .details-conatiner .score-table th:nth-child(3) {
   width: 16%;
 }
-
 .details-conatiner .score-table th:nth-child(4) {
   width: 23%;
 }
@@ -201,7 +189,7 @@
   appearance: none;
   border: 0;
   border-radius: 10px;
-  background-color: var(--color-white);
+  background: var(--color-white);
 }
 
 .details-conatiner .logo-container {
@@ -209,12 +197,10 @@
   align-items: center;
   gap: 10px;
 }
-
 .details-conatiner .logo-container img {
   width: 24px;
   height: 24px;
 }
-
 .details-conatiner .logo {
   margin: 0;
 }
@@ -223,4 +209,47 @@
   .details-conatiner .details-main-container {
     flex-direction: column;
   }
+}
+
+.details-conatiner .field-row {
+  margin-bottom: var(--spacing-3);
+}
+.details-conatiner .field-row:last-child {
+  margin-bottom: 0;
+}
+
+.details-conatiner .candidate-list {
+  list-style: disc;
+  padding-left: var(--spacing-5);
+  margin: 0;
+}
+
+.details-conatiner .candidate-list li {
+  margin-bottom: var(--spacing-3);
+}
+.details-conatiner .candidate-list li:last-child {
+  margin-bottom: 0;
+}
+.details-conatiner .candidate-list li p {
+  margin: 0;
+}
+
+.details-conatiner .skills-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.details-conatiner .description {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
+}
+
+.details-conatiner .description strong {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
 }

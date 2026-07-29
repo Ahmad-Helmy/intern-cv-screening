@@ -13,7 +13,7 @@ export default function CardInfo({ children, title, icon }: CardInfoProps) {
     <Card>
       <div className="card-info-title">
         {icon && <span className="card-info-icon">{icon}</span>}
-        <Title type="medium" variant="primary">
+        <Title type="large" variant="primary">
           {title}
         </Title>
       </div>
