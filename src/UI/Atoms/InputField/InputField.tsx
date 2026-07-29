@@ -1,4 +1,4 @@
-import "./InputField.css"
+import "./InputField.css";
 type InputFieldProps = {
   placeholder?: string;
   name: string;
@@ -8,8 +8,8 @@ type InputFieldProps = {
 
 function InputField({ placeholder, name, value, onChange }: InputFieldProps) {
   return (
-    <div>
-      <label>{name}</label>
+    <div className="input-field-container">
+      <label className="label">{name}</label>
 
       <input
         type="text"
@@ -17,7 +17,7 @@ function InputField({ placeholder, name, value, onChange }: InputFieldProps) {
         name={name}
         value={value}
         onChange={onChange}
-        id="InputField"
+        className="input-field"
       />
     </div>
   );
