@@ -19,7 +19,9 @@ const Candidates = () => {
         />
       </div>
       <Card table>
-        <Table columns={candidateColumns} data={rows} />
+        <div className="candidates-table">
+          <Table columns={candidateColumns} data={rows} />
+        </div>
       </Card>
     </DefaultTemplate>
   );
