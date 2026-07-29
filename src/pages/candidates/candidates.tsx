@@ -53,6 +53,7 @@ const Candidates = () => {
                   "Imported",
                 ]}
                 onChange={(value) => {
+                  //TODO: Implement filter by status
                   console.log(value);
                 }}
               />
