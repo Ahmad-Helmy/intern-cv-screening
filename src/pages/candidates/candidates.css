@@ -17,4 +17,5 @@
 .candidates-table .table-header .table-data {
   padding: 24.5px 16px 23.5px 16px;
   font-weight: normal;
+  text-align: start;
 }
