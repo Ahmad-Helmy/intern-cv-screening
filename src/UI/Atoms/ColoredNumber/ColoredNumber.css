@@ -8,7 +8,7 @@
   font-weight: var(--font-weight-bold);
 }
 .score-value.size-small {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
 }
 .score-value.score--high {
