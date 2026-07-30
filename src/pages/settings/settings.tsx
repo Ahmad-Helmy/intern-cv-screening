@@ -1,13 +1,11 @@
 import React from "react";
 import "./settings.css";
 import "../../index.css";
-import DefaultTemplate from "../../UI/DefaultTemplates/DefaultTemplate";
 import Badge from "../../UI/Atoms/Badge/Badge.tsx";
 import Button from "../../UI/Atoms/Buttons/Button.tsx";
 import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu.tsx";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Title from "../../UI/Atoms/Title/Title";
-import Logo from "../../UI/Atoms/Logo/Logo";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle.tsx";
 import suitcaseIcon from "../../assets/icons/briefcase.svg";
@@ -17,7 +15,7 @@ const suitcase = <img src={suitcaseIcon} alt="suicase-icon" />;
 
 const Settings: React.FC = () => {
   return (
-    <DefaultTemplate>
+    <>
       <header>
         <InfoTitle
           label="Settings"
@@ -28,12 +26,11 @@ const Settings: React.FC = () => {
       <div className="settings">
         <div className="internships-panel">
           <CardInfo title="Internships" icon={suitcase}>
-            
             <div className="card-info-header-row">
               <Badge text={"2"} type="default" />
               <Button text="+ New" variant="primary" onClick={() => {}} />
             </div>
-              <div className="intersnhip-list">
+            <div className="intersnhip-list">
               <div className="internship-card">
                 <InfoTitle
                   label="EDC Software Engineering Internship 2026"
@@ -50,7 +47,7 @@ const Settings: React.FC = () => {
           </CardInfo>
         </div>
       </div>
-    </DefaultTemplate>
+    </>
   );
 };
 
