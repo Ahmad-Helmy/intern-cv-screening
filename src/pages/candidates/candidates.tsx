@@ -1,5 +1,4 @@
 import "./candidates.css";
-import DefaultTemplate from "../../UI/DefaultTemplates/DefaultTemplate";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
 import Table from "../../UI/Molecules/Table/Table";
 import { candidateColumns, candidateData } from "./mockData";
@@ -10,9 +9,11 @@ import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Candidates = () => {
-  const rows = mapCandidatesToRows(candidateData);
+  const navigate = useNavigate();
+  const rows = mapCandidatesToRows(candidateData, (id: number) => navigate(`/candidates/${id}`));
 
   const [searchValue, setSearchValue] = useState("");
   const [selectedInternship, setSelectedInternship] = useState("");
@@ -64,38 +65,36 @@ const Candidates = () => {
     );
   };
   return (
-    <DefaultTemplate>
-      <div className="candidates">
-        <InfoTitle
-          label="Candidates"
-          value="Select an internship to review its applicants"
+    <div className="candidates">
+      <InfoTitle
+        label="Candidates"
+        value="Select an internship to review its applicants"
+      />
+      <div className="label-dropdown">
+        <Title type="small" variant="primary">
+          Internship
+        </Title>
+        <DropdownMenu
+          size="large"
+          options={[
+            "Software Engineering Summer Internship 2026",
+            "Data Science Internship 2026",
+            "Cloud & DevOps Internship 2026",
+          ]}
+          onChange={(value) => {
+            setSelectedInternship(value);
+          }}
         />
-        <div className="label-dropdown">
-          <Title type="small" variant="primary">
-            Internship
-          </Title>
-          <DropdownMenu
-            size="large"
-            options={[
-              "Software Engineering Summer Internship 2026",
-              "Data Science Internship 2026",
-              "Cloud & DevOps Internship 2026",
-            ]}
-            onChange={(value) => {
-              setSelectedInternship(value);
-            }}
+      </div>
+      <CardInfo title={getCardTitle()} isTable>
+        <div className="candidates-table">
+          <Table
+            columns={candidateColumns}
+            data={selectedInternship ? rows : []}
           />
         </div>
-        <CardInfo title={getCardTitle()} isTable>
-          <div className="candidates-table">
-            <Table
-              columns={candidateColumns}
-              data={selectedInternship ? rows : []}
-            />
-          </div>
-        </CardInfo>
-      </div>
-    </DefaultTemplate>
+      </CardInfo>
+    </div>
   );
 };
 
