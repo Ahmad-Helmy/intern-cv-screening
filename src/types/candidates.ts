@@ -1,3 +1,5 @@
+import type { Internship } from "./internships";
+
 export interface Status {
   status: "Imported" | "Processing" | "Evaluated" | "Nominated" | "Rejected";
 }
@@ -55,4 +57,5 @@ export interface Candidate {
   trackPreference: string;
   profile?: CandidateProfile;
   evaluation?: CandidateEvaluation;
+  internships: Internship[];
 }
