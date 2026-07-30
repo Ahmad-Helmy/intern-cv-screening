@@ -10,9 +10,11 @@ import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Candidates = () => {
-  const rows = mapCandidatesToRows(candidateData);
+  const navigate = useNavigate();
+  const rows = mapCandidatesToRows(candidateData, (id: number) => navigate(`/candidates/${id}`));
 
   const [searchValue, setSearchValue] = useState("");
   const [selectedInternship, setSelectedInternship] = useState("");

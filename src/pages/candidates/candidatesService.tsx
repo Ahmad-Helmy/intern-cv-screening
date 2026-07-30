@@ -46,10 +46,10 @@ const renderText = (value?: string): ReactNode => {
   return value && value.trim() !== "" ? value : FALLBACK;
 };
 
-const renderCandidate = (name?: string, email?: string): ReactNode => {
+const renderCandidate = (name?: string, email?: string, onClick?: () => void): ReactNode => {
   if (!name || name.trim() === "") return FALLBACK;
   return (
-    <div className="candidate-cell">
+    <div className="candidate-cell" onClick={onClick} style={{ cursor: onClick ? "pointer" : "default" }}>
       <InfoTitle label={name} value={email || FALLBACK} />
     </div>
   );
@@ -57,9 +57,10 @@ const renderCandidate = (name?: string, email?: string): ReactNode => {
 
 export const mapCandidateToRow = (
   candidate: RawCandidate,
+  onClickRow: (id: number) => void
 ): Record<string, ReactNode> => {
   return {
-    Candidate: renderCandidate(candidate.Candidate, candidate.Email),
+    Candidate: renderCandidate(candidate.Candidate, candidate.Email, () => onClickRow(candidate.id)),
     Uni: renderText(candidate.Uni),
     Major: renderText(candidate.Major),
     GPA: renderText(candidate.GPA),
@@ -71,6 +72,7 @@ export const mapCandidateToRow = (
 
 export const mapCandidatesToRows = (
   candidates: RawCandidate[],
+  onClickRow: (id: number) => void,
 ): Record<string, ReactNode>[] => {
-  return candidates.map(mapCandidateToRow);
+  return candidates.map((candidate) => mapCandidateToRow(candidate, onClickRow));
 };
