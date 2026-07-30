@@ -9,14 +9,27 @@ import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 const Candidates = () => {
   const navigate = useNavigate();
-  const rows = mapCandidatesToRows(candidateData, (id: number) => navigate(`/candidates/${id}`));
+  const [, setSearchParams] = useSearchParams();
+  const rows = mapCandidatesToRows(candidateData, (id: number) =>
+    navigate(`/candidates/${id}`),
+  );
 
   const [searchValue, setSearchValue] = useState("");
   const [selectedInternship, setSelectedInternship] = useState("");
+
+  const setParam = (key: string, value: string) =>
+    setSearchParams((prev) => {
+      if (value) {
+        prev.set(key, value);
+      } else {
+        prev.delete(key);
+      }
+      return prev;
+    });
 
   const getCardTitle = () => {
     if (!selectedInternship) {
@@ -53,10 +66,7 @@ const Candidates = () => {
                   "Processing",
                   "Imported",
                 ]}
-                onChange={(value) => {
-                  //TODO: Implement filter by status
-                  console.log(value);
-                }}
+                onChange={(value) => setParam("status", value)}
               />
             }
           </div>
