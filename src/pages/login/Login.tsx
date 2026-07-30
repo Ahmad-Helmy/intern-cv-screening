@@ -5,13 +5,17 @@ import Title from "../../UI/Atoms/Title/Title";
 import Button from "../../UI/Atoms/Buttons/Button";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import "./Login.css";
+import { useAuth } from "../../context/auth-context";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
   //function for signin onclick button
-  const handleSignIn = () => {};
+  const handleSignIn = () => {
+    login(email, password);
+  };
 
   return (
     <div className="login-page">
