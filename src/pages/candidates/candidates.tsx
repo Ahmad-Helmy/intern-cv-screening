@@ -8,7 +8,6 @@ import Title from "../../UI/Atoms/Title/Title";
 import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
-import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 
 const Candidates = () => {
@@ -64,7 +63,7 @@ const Candidates = () => {
           <div className="">
             {
               <DropdownMenu
-                size="large"
+                size="small"
                 options={[
                   "All Statuses",
                   "Nominated",
