@@ -44,10 +44,10 @@ const renderScore = (score?: number): ReactNode => {
   );
 };
 
-const renderNominated = (nominated?: "Yes" | "No"): ReactNode => {
-  if (!nominated) return FALLBACK;
-  const type: BadgeType = nominated === "Yes" ? "nominated" : "rejected";
-  return <Badge text={nominated} type={type} />;
+const renderNominated = (nominated?: boolean): ReactNode => {
+  if (nominated === undefined || nominated === null) return FALLBACK;
+  const type: BadgeType = nominated === true ? "nominated" : "rejected";
+  return <Badge text={nominated ? "Yes" : "No"} type={type} />;
 };
 
 const renderText = (value?: string): ReactNode => {
@@ -84,7 +84,7 @@ export const mapCandidateToRow = (
     GPA: renderText(candidate.gpa?.toString()),
     Status: renderStatus(candidate.status?.status),
     Score: renderScore(candidate.score),
-    Nominated: renderNominated(candidate.isNominated ? "Yes" : "No"),
+    Nominated: renderNominated(candidate.isNominated),
   };
 };
 

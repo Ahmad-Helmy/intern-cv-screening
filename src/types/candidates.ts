@@ -50,7 +50,7 @@ export interface Candidate {
   gpa: number;
   status: Status;
   score: number;
-  isNominated: boolean;
+  isNominated?: boolean;
   videoStatus: VideoStatus;
   recommendation: Recommendation;
   phone: string;
