@@ -13,13 +13,14 @@ import { useNavigate, useSearchParams } from "react-router";
 
 const Candidates = () => {
   const navigate = useNavigate();
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const rows = mapCandidatesToRows(candidateData, (id: number) =>
     navigate(`/candidates/${id}`),
   );
 
   const [searchValue, setSearchValue] = useState("");
-  const [selectedInternship, setSelectedInternship] = useState("");
+  const selectedInternship = searchParams.get("internship") || "";
+  const selectedStatus = searchParams.get("status") || "";
 
   const setParam = (key: string, value: string) =>
     setSearchParams((prev) => {
@@ -66,6 +67,7 @@ const Candidates = () => {
                   "Processing",
                   "Imported",
                 ]}
+                selectedOption={selectedStatus}
                 onChange={(value) => setParam("status", value)}
               />
             }
@@ -91,8 +93,9 @@ const Candidates = () => {
             "Data Science Internship 2026",
             "Cloud & DevOps Internship 2026",
           ]}
+          selectedOption={selectedInternship}
           onChange={(value) => {
-            setSelectedInternship(value);
+            setParam("internship", value);
           }}
         />
       </div>
