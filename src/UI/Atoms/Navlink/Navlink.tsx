@@ -1,21 +1,23 @@
+import { NavLink as RouterNavLink } from "react-router";
 import "./Navlink.css";
 
 const NavLink = ({
   label,
-  active,
+  to,
   icon,
-  onClick,
 }: {
   label: string;
-  active?: boolean;
+  to: string;
   icon?: string;
-  onClick?: () => void;
 }) => {
   return (
-    <div className={`sidebar_link ${active ? "active" : ""}`} onClick={onClick}>
-      <img src={icon} alt={label} />
+    <RouterNavLink
+      to={to}
+      className={({ isActive }) => `sidebar_link ${isActive ? "active" : ""}`}
+    >
+      {icon && <img src={icon} alt="" />}
       <span>{label}</span>
-    </div>
+    </RouterNavLink>
   );
 };
 
