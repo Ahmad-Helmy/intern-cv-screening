@@ -7,18 +7,19 @@ type InputFieldProps = {
 
 function InputField({ placeholder, name, value, onChange }: InputFieldProps) {
   return (
-    <>
+    <div className="form-field">
       <label>{name}</label>
 
       <input
+        className="InputField"
         type="text"
         placeholder={placeholder}
         name={name}
         value={value}
         onChange={onChange}
-        id="InputField"
+        readOnly={!onChange}
       />
-    </>
+    </div>
   );
 }
 export default InputField;
