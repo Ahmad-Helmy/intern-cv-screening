@@ -6,6 +6,7 @@ import Candidates from "./pages/candidates/candidates";
 import LoginPage from "./pages/login/Login";
 import Settings from "./pages/settings/settings";
 import PageTemplate from "./UI/DefaultTemplates/DefaultTemplate";
+import ProtectedRoute from "./utils/ProtectedComponent";
 
 function App() {
   return (

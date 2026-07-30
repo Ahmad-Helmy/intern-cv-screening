@@ -3,7 +3,7 @@ import type { User } from "../types/users";
 
 interface AuthContextValue {
   user: User | null;
-  login: (email: string, password: string) => void;
+  login: (email: string, password: string) => boolean;
   logout: () => void;
 }
 
@@ -20,7 +20,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         name: "Demo Recruiter",
         password: "demo123",
       });
+      console.log({ ["Auth-context"]: user });
+      return true;
     }
+    return false;
   };
 
   const logout = () => {
@@ -29,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const value: AuthContextValue = { user, login, logout };
 
-  return <AuthContext value={value}>{children}</AuthContext>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
