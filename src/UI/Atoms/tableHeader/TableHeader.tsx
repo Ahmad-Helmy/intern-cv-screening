@@ -1,5 +1,4 @@
 import "./TableHeader.css";
-import { TableRow } from "../tableRow/TableRow";
 type TableHeaderProps = {
   columns: string[];
 };
@@ -7,11 +6,11 @@ type TableHeaderProps = {
 export function TableHeader({ columns }: TableHeaderProps) {
   return (
     <thead className="table-header">
-      <TableRow>
-        {columns.map((column) => {
-          return <th key={column}>{column}</th>;
-        })}
-      </TableRow>
+      {columns.map((column) => (
+        <th className="table-header-cell" key={column}>
+          {column}
+        </th>
+      ))}
     </thead>
   );
-}   
+}

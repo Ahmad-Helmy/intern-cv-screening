@@ -2,7 +2,7 @@ import "./DropdownMenu.css";
 
 type DropdownMenu_props = {
   options?: string[];
-  size: string;
+  size: "small" | "large";
   placeholder?: string;
   label: string;
   onChange: (value: string) => void;
@@ -13,6 +13,7 @@ export default function DropdownMenu({
   size,
   label,
   onChange,
+  placeholder = "Select an Option",
 }: DropdownMenu_props) {
   return (
     <div className="form-field">

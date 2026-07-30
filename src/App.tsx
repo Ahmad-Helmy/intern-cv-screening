@@ -1,11 +1,10 @@
 import "./App.css";
-import DefaultTemplate from "./UI/DefaultTemplates/DefaultTemplate";
-import Settings from "./pages/settings/settings";
+import CandidateDetails from "./pages/candidate-details/candidate-details";
 
 function App() {
   return (
     <>
-      <Settings />
+      <CandidateDetails />
     </>
   );
 }

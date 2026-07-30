@@ -1,0 +1,43 @@
+.candidates {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+.label-dropdown {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+.candidates-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-4) var(--spacing-4) 0 var(--spacing-4);
+}
+.candidates-header-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+.candidates-actions {
+  display: flex;
+  justify-content: left;
+  gap: var(--spacing-3);
+}
+
+.candidate-cell .info-title > *:first-child {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.candidate-cell .info-title > *:last-child {
+  font-size: var(--font-size-xs);
+  font-weight: normal;
+}
+
+.candidates-table td,
+.candidates-table .table-header .table-data {
+  font-weight: var(--font-weight-medium);
+  text-align: start;
+}
