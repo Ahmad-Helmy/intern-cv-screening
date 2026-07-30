@@ -14,14 +14,20 @@ import { useNavigate, useSearchParams } from "react-router";
 const Candidates = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const rows = mapCandidatesToRows(candidateData, (id: number) =>
-    navigate(`/candidates/${id}`),
-  );
 
   const searchValue = searchParams.get("search") || "";
   const selectedInternship = searchParams.get("internship") || "";
   const selectedStatus = searchParams.get("status") || "";
 
+  const rows = mapCandidatesToRows(
+    candidateData,
+    {
+      search: searchValue,
+      internship: selectedInternship,
+      status: selectedStatus,
+    },
+    (id: string) => navigate(`/candidates/${id}`),
+  );
   const setParam = (key: string, value: string) =>
     setSearchParams((prev) => {
       if (value) {
