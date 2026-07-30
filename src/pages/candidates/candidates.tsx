@@ -18,7 +18,7 @@ const Candidates = () => {
     navigate(`/candidates/${id}`),
   );
 
-  const [searchValue, setSearchValue] = useState("");
+  const searchValue = searchParams.get("search") || "";
   const selectedInternship = searchParams.get("internship") || "";
   const selectedStatus = searchParams.get("status") || "";
 
@@ -51,7 +51,7 @@ const Candidates = () => {
               <InputField
                 placeholder="Search candidates..."
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={(e) => setParam("search", e.target.value)}
               />
             }
           </div>
