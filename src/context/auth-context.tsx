@@ -13,12 +13,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const login = (email: string, password: string) => {
-    setUser({
-      id: "temp-id",
-      email,
-      name: "Demo User",
-      password,
-    });
+    if (email === "demo@celfocus.com" && password === "demo123") {
+      setUser({
+        id: "temp-id",
+        email: "demo@celfocus.com",
+        name: "Demo Recruiter",
+        password: "demo123",
+      });
+    }
   };
 
   const logout = () => {
