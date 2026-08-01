@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router";
 
 import type { User } from "../types/users";
-
 
 interface AuthContextValue {
   user: User | null;
@@ -16,9 +15,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
 
-
   const login = (email: string, password: string) => {
-    
     if (email === "demo@celfocus.com" && password === "demo123") {
       setUser({
         id: "temp-id",
@@ -26,8 +23,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         name: "Demo Recruiter",
         password: "demo123",
       });
-      console.log({["Auth-context"] : user});
-      navigate("/");
     }
   };
 

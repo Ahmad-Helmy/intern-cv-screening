@@ -6,11 +6,16 @@ import Button from "../../UI/Atoms/Buttons/Button";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import "./Login.css";
 import { useAuth } from "../../context/auth-context";
+import { Navigate } from "react-router";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { user, login } = useAuth();
+
+  if (user) {
+    return <Navigate to="/candidates" />;
+  }
 
   //function for signin onclick button
   const handleSignIn = () => {
