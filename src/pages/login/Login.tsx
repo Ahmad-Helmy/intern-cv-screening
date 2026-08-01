@@ -12,7 +12,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const { login } = useAuth();
 
-  //function for signin onclick button
   const handleSignIn = () => {
     login(email, password);
   };
