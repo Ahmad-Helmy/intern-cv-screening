@@ -28,10 +28,11 @@ api.interceptors.response.use(
     // login page show its inline error instead of redirecting (which would
     // reload the page and wipe the message). Only redirect for 401s on other
     // requests, i.e. an expired or invalid session.
+    // The token is the only thing we persist — the signed-in user comes from
+    // GET /auth/me, so there is nothing else to clean up here.
     const isLoginRequest = error.config?.url?.includes("/auth/login");
     if (error.response?.status === 401 && !isLoginRequest) {
       localStorage.removeItem("auth_token");
-      localStorage.removeItem("auth_user");
       window.location.href = "/login";
     }
     return Promise.reject(error);

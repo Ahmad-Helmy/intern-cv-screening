@@ -52,6 +52,35 @@ export const newUuid = () =>
   "00000000-0000-4000-9000-" +
   Date.now().toString(16).padStart(12, "0").slice(-12);
 
+// ── Auth helpers ─────────────────────────────────────────────────────────────
+
+/**
+ * Pulls the email back out of a mock token, or null if it isn't one of ours.
+ *
+ * Stands in for what a real API does on every authenticated request: verify the
+ * token's signature and read the subject claim out of it. The point for the UI
+ * is the same either way — identity comes from the token, so the client never
+ * has to store (or be trusted with) the user's profile.
+ */
+export const emailFromToken = (token: string): string | null => {
+  const [prefix, payload] = token.split(".");
+  if (prefix !== "mock-jwt-token" || !payload) return null;
+  try {
+    // btoa's "=" padding is stripped when the token is built — put it back.
+    return atob(payload.padEnd(Math.ceil(payload.length / 4) * 4, "="));
+  } catch {
+    return null;
+  }
+};
+
+/** Reads the bearer token off a request, or null when there isn't one. */
+export const bearerToken = (request: Request): string | null => {
+  const header = request.headers.get("Authorization");
+  if (!header?.startsWith("Bearer ")) return null;
+  const token = header.slice("Bearer ".length).trim();
+  return token || null;
+};
+
 // ── Response-envelope helpers ────────────────────────────────────────────────
 // The backend wraps some endpoints in a ResponseModel<T>: HTTP is always 200
 // and success/failure is carried in the body. `ok()` and `fail()` below produce

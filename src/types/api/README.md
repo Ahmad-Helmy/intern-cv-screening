@@ -21,7 +21,7 @@ models it as `status: { status: "Nominated" }`.
 
 | Style | Endpoints | What `response.data` is |
 | --- | --- | --- |
-| Plain | `POST /auth/login`, both candidate endpoints, `GET /internships` | the payload itself |
+| Plain | `POST /auth/login`, `GET /auth/me`, both candidate endpoints, `GET /internships` | the payload itself |
 | Envelope | everything else under `/internships` and `/scoring-criteria` | `{ data, message, isSuccessful, code }` |
 
 Envelope endpoints always return HTTP 200 — a failure shows up as

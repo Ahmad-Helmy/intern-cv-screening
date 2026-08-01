@@ -1,18 +1,23 @@
 /**
  * PLACEHOLDER — auth contract.
  *
- * Endpoint: POST /auth/login  (plain response, no envelope)
- * Mock:     src/mocks/handlers.ts (the auth/login handler)
- *           src/mocks/data.ts     → `mockAuthResponse`
+ * Endpoints (both plain responses, no envelope):
+ *   POST /auth/login → token + user. Real HTTP 401 on bad credentials.
+ *   GET  /auth/me    → the user the bearer token belongs to. 401 if invalid.
  *
- * Invalid credentials come back as a real HTTP 401, so axios will reject.
+ * Mock: src/mocks/handlers.ts (the auth handlers), and `mockUser` /
+ *       `mockAuthResponse` in src/mocks/data.ts.
+ *
+ * Both endpoints describe the same person, so `AuthTokenResponse` is just
+ * `AuthUser` plus the credential fields — worth expressing in the types rather
+ * than writing the four user fields out twice.
  */
 
 /** TODO(intern): what the login form sends. */
 export type LoginRequest = unknown;
 
-/** TODO(intern): what the server sends back — a token, an expiry and the user. */
-export type AuthTokenResponse = unknown;
-
-/** TODO(intern): the subset of the response worth keeping in app state. */
+/** TODO(intern): the signed-in person — what GET /auth/me returns. */
 export type AuthUser = unknown;
+
+/** TODO(intern): the login response — a token, an expiry, and the user fields. */
+export type AuthTokenResponse = unknown;

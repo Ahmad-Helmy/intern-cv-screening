@@ -19,8 +19,18 @@ import {
   internshipListItems,
   scoringCriteria,
   mockAuthResponse,
+  mockUser,
 } from "./data";
-import { ok, fail, NOT_FOUND, newUuid, sumWeights, markHasCriteria } from "./helpers";
+import {
+  ok,
+  fail,
+  NOT_FOUND,
+  newUuid,
+  sumWeights,
+  markHasCriteria,
+  bearerToken,
+  emailFromToken,
+} from "./helpers";
 
 /**
  * Request-body shapes, declared locally so the mock layer stays independent of
@@ -73,6 +83,18 @@ export const handlers = [
     }
 
     return HttpResponse.json(mockAuthResponse(expectedEmail));
+  }),
+
+  // ── Who am I? (the only endpoint that reads the Authorization header) ─────
+  // Answers from the bearer token alone, so a page reload can restore the
+  // signed-in user with nothing kept client-side except the token itself.
+  // No token, or one we don't recognise, is a 401 — same as an expired session.
+  http.get("*/auth/me", ({ request }) => {
+    const token = bearerToken(request);
+    const email = token ? emailFromToken(token) : null;
+    if (!email) return new HttpResponse(null, { status: 401 });
+
+    return HttpResponse.json(mockUser(email));
   }),
 
   // ── Candidates list (filter + sort, plain array — no envelope) ───────────

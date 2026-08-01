@@ -43,6 +43,7 @@ they back the candidates table, which is the page furthest along.
 | Method | Path | Response style |
 | --- | --- | --- |
 | POST | `/auth/login` | plain (401 on bad credentials) |
+| GET | `/auth/me` | plain — reads the `Authorization` header, 401 without a valid token |
 | GET | `/internships/:internshipId/candidates` | plain array — supports `search`, `status`, `isNominated`, `sortBy`, `sortAsc` |
 | GET | `/candidates/:id` | plain (real 404 if unknown) |
 | GET | `/internships` | plain array of `{ id, name }` |

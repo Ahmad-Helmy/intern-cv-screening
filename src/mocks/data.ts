@@ -453,11 +453,28 @@ export const candidates = Array.from({ length: TOTAL_CANDIDATES }, (_, i) =>
 );
 
 // ── Auth ─────────────────────────────────────────────────────────────────────
-export const mockAuthResponse = (email: string) => ({
-  token: "mock-jwt-token." + btoa(email).replace(/=/g, ""),
-  expiresAt: new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
+
+/**
+ * The signed-in person. This is what GET /auth/me answers with — no token, no
+ * password, just who you are.
+ */
+export const mockUser = (email: string) => ({
   firstName: "Demo",
   lastName: "Recruiter",
   email,
   designation: "Talent Acquisition Specialist",
+});
+
+/**
+ * The login response: a credential plus the same user object.
+ *
+ * The token is not a real JWT — it is the literal string "mock-jwt-token"
+ * followed by the base64 email, so the /auth/me handler can work out who is
+ * calling. A real backend signs a JWT and verifies the signature; don't read
+ * anything into this format beyond "the server can identify the bearer".
+ */
+export const mockAuthResponse = (email: string) => ({
+  token: "mock-jwt-token." + btoa(email).replace(/=/g, ""),
+  expiresAt: new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
+  ...mockUser(email),
 });
