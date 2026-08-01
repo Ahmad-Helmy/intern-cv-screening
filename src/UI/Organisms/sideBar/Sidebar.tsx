@@ -8,8 +8,8 @@ import signout from "../../../assets/icons/logout.svg";
 import { useAuth } from "../../../context/auth-context";
 
 function Sidebar() {
-  const { user, logout } = useAuth();
-
+  const { logout } = useAuth();
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   return (
     <>
       <aside className="sidebar">

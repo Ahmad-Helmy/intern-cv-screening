@@ -11,16 +11,18 @@ import { Navigate } from "react-router";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { user, login } = useAuth();
-
-  if (user) return <Navigate to="/candidates" replace />;
+  if (user?.id) return <Navigate to="/candidates" replace />;
 
   const handleSignIn = () => {
-    if (!email.trim || !password.trim) {
-      alert("Please add all credentials");
+    if (!email.trim() || !password.trim()) {
+      setError("Please enter both email and password.");
       return;
     }
-
+    if (!user?.id) {
+      setError("Invalid email or password.");
+    }
     login(email, password);
   };
 
@@ -34,7 +36,6 @@ export default function LoginPage() {
               Sign in to your admin account
             </Title>
           </div>
-
           <div className="login-form">
             <div className="login-fields">
               <InputField
@@ -52,7 +53,7 @@ export default function LoginPage() {
                 />
               </div>
             </div>
-
+            {error && <div className="login-error">{error}</div>}
             <Button text="Sign in" variant="primary" onClick={handleSignIn} />
           </div>
         </CardInfo>
