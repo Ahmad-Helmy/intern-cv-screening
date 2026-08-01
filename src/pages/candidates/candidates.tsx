@@ -13,10 +13,21 @@ import { useNavigate } from "react-router";
 
 const Candidates = () => {
   const navigate = useNavigate();
-  const rows = mapCandidatesToRows(candidateData, (id: number) => navigate(`/candidates/${id}`));
+  const rows = mapCandidatesToRows(candidateData, (id: number) =>
+    navigate(`/candidates/${id}`),
+  );
 
   const [searchValue, setSearchValue] = useState("");
-  const [selectedInternship, setSelectedInternship] = useState("");
+
+  //const [selectedInternship, setSelectedInternship] = useState("");
+  const [selectedInternship, setSelectedInternshipState] = useState(
+    () => sessionStorage.getItem("selectedInternship") ?? "",
+  );
+
+  const setSelectedInternship = (value: string) => {
+    sessionStorage.setItem("selectedInternship", value);
+    setSelectedInternshipState(value);
+  };
 
   const getCardTitle = () => {
     if (!selectedInternship) {
