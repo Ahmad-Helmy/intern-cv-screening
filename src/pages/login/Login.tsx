@@ -1,17 +1,35 @@
 import { useState } from "react";
+import { Navigate, useLocation } from "react-router";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import Logo from "../../UI/Atoms/Logo/Logo";
 import Title from "../../UI/Atoms/Title/Title";
 import Button from "../../UI/Atoms/Buttons/Button";
 import InputField from "../../UI/Atoms/InputField/InputField";
+import { useAuth } from "../../context/auth-context";
 import "./Login.css";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { user, login } = useAuth();
+  const location = useLocation();
 
-  //function for signin onclick button
-  const handleSignIn = () => {};
+  // ProtectedRoute passes the page they were trying to reach
+  const from =
+    (location.state as { from?: string } | null)?.from ?? "/candidates";
+
+  // already signed in — nothing to do on this page
+  if (user) return <Navigate to={from} replace />;
+
+  const handleSignIn = () => {
+    if (!email.trim() || !password.trim()) {
+      setError("Enter an email address and a password.");
+      return;
+    }
+    setError("");
+    login(email, password);
+  };
 
   return (
     <div className="login-page">
@@ -41,6 +59,12 @@ export default function LoginPage() {
                 />
               </div>
             </div>
+
+            {error && (
+              <Title type="x-small" variant="muted">
+                {error}
+              </Title>
+            )}
 
             <Button text="Sign in" variant="primary" onClick={handleSignIn} />
           </div>

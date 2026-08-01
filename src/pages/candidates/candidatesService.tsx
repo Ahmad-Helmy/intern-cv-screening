@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router";
 import Badge, { type BadgeType } from "../../UI/Atoms/Badge/Badge";
 import ColoredNumber from "../../UI/Atoms/ColoredNumber/ColoredNumber";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
@@ -14,11 +15,11 @@ const statusBadgeType: Partial<Record<CandidateStatus, BadgeType>> = {
   Rejected: "rejected",
 };
 
-const getBadgeTypeForStatus = (status: CandidateStatus): BadgeType => {
+export const getBadgeTypeForStatus = (status: CandidateStatus): BadgeType => {
   return statusBadgeType[status] || "default";
 };
 
-const getScoreLevel = (score: number): "high" | "mid" | "low" => {
+export const getScoreLevel = (score: number): "high" | "mid" | "low" => {
   if (score >= 85) return "high";
   if (score >= 70) return "mid";
   return "low";
@@ -46,21 +47,28 @@ const renderText = (value?: string): ReactNode => {
   return value && value.trim() !== "" ? value : FALLBACK;
 };
 
-const renderCandidate = (name?: string, email?: string, onClick?: () => void): ReactNode => {
+const renderCandidate = (
+  id: string,
+  name?: string,
+  email?: string,
+): ReactNode => {
   if (!name || name.trim() === "") return FALLBACK;
   return (
-    <div className="candidate-cell" onClick={onClick} style={{ cursor: onClick ? "pointer" : "default" }}>
+    <Link className="candidate-cell" to={`/candidates/${id}`}>
       <InfoTitle label={name} value={email || FALLBACK} />
-    </div>
+    </Link>
   );
 };
 
 export const mapCandidateToRow = (
   candidate: RawCandidate,
-  onClickRow: (id: number) => void
 ): Record<string, ReactNode> => {
   return {
-    Candidate: renderCandidate(candidate.Candidate, candidate.Email, () => onClickRow(candidate.id)),
+    Candidate: renderCandidate(
+      candidate.id,
+      candidate.Candidate,
+      candidate.Email,
+    ),
     Uni: renderText(candidate.Uni),
     Major: renderText(candidate.Major),
     GPA: renderText(candidate.GPA),
@@ -72,7 +80,6 @@ export const mapCandidateToRow = (
 
 export const mapCandidatesToRows = (
   candidates: RawCandidate[],
-  onClickRow: (id: number) => void,
 ): Record<string, ReactNode>[] => {
-  return candidates.map((candidate) => mapCandidateToRow(candidate, onClickRow));
+  return candidates.map(mapCandidateToRow);
 };

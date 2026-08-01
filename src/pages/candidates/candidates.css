@@ -26,6 +26,17 @@
   gap: var(--spacing-3);
 }
 
+.candidate-cell {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.candidate-cell:hover .info-title > *:first-child,
+.candidate-cell:focus-visible .info-title > *:first-child {
+  text-decoration: underline;
+}
+
 .candidate-cell .info-title > *:first-child {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
