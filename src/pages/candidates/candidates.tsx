@@ -9,41 +9,24 @@ import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
 import { useNavigate, useSearchParams } from "react-router";
-import { getInternships } from "../../services/internships";
-import { useEffect, useState } from "react";
-import { getCandidates } from "../../services/candidates";
 
 const Candidates = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [internships, setInternships] = useState([]);
+
   const searchValue = searchParams.get("search") || "";
   const selectedInternship = searchParams.get("internship") || "";
   const selectedStatus = searchParams.get("status") || "";
 
-  // const rows = mapCandidatesToRows(
-  //   candidateData,
-  //   {
-  //     search: searchValue,
-  //     internship: selectedInternship,
-  //     status: selectedStatus,
-  //   },
-  //   (id: string) => navigate(`/candidates/${id}`),
-  // );
-
-  useEffect(() => {
-    async function initializeInternships() {
-      const data = await getInternships();
-      setInternships(data);
-    }
-    initializeInternships();
-  }, []);
-
-  const handleGetCandidates = async (value) => {
-    const data = await getCandidates(value, {});
-    // TODO: set the candidates in useState and then use it in HTML
-  };
-
+  const rows = mapCandidatesToRows(
+    candidateData,
+    {
+      search: searchValue,
+      internship: selectedInternship,
+      status: selectedStatus,
+    },
+    (id: string) => navigate(`/candidates/${id}`),
+  );
   const setParam = (key: string, value: string) =>
     setSearchParams((prev) => {
       if (value) {
