@@ -95,18 +95,3 @@ export const getStoredToken = () => localStorage.getItem(TOKEN_KEY);
  *
  * `logout` then becomes: clearToken() + setUser(null).
  */
-
-export const login = async (credentials: LoginRequest) => {
-    const authResponse = await postLogin(credentials);
-
-    storeToken(authResponse.token);
-  };
-
-export const restoreSession = async (): Promise<AuthUser | null> => {
-    const token = getStoredToken();
-    if (!token) {
-      return null;
-    }
-    const user = await getCurrentUser();
-    return user;
-  }
