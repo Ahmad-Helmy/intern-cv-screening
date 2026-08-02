@@ -44,3 +44,11 @@ export const Filled: Story = {
   },
   render: (args) => <ControlledInputField {...args} />,
 };
+
+export const NoLabel: Story = {
+  args: {
+    placeholder: "Search candidates…",
+    value: "",
+  },
+  render: (args) => <ControlledInputField {...args} />,
+};

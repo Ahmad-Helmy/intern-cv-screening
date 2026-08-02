@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MemoryRouter } from "react-router";
 
-import { AuthProvider } from "../../../context/AuthProvider";
+import { AuthProvider } from "../../../context/auth-context";
 import Sidebar from "./Sidebar";
 
 const meta = {

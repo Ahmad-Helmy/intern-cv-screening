@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MemoryRouter, Route, Routes } from "react-router";
 
-import { AuthProvider } from "../../context/AuthProvider";
+import { AuthProvider } from "../../context/auth-context";
 import Title from "../Atoms/Title/Title";
 import DefaultTemplate from "./DefaultTemplate";
 

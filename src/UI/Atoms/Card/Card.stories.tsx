@@ -24,3 +24,15 @@ export const Default: Story = {
     ),
   },
 };
+
+export const TableCard: Story = {
+  args: {
+    isTable: true,
+    children: (
+      <div>
+        <h3>Table card</h3>
+        <p>Variant used to wrap tables.</p>
+      </div>
+    ),
+  },
+};

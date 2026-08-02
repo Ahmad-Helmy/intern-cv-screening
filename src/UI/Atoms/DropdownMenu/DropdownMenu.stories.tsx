@@ -22,17 +22,38 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const statusOptions = [
+  { id: "imported", label: "Imported" },
+  { id: "processing", label: "Processing" },
+  { id: "evaluated", label: "Evaluated" },
+  { id: "nominated", label: "Nominated" },
+  { id: "rejected", label: "Rejected" },
+];
+
 export const Small: Story = {
   args: {
     size: "small",
-    options: ["Imported", "Processing", "Evaluated", "Nominated", "Rejected"],
+    options: statusOptions,
   },
 };
 
 export const Large: Story = {
   args: {
     size: "large",
-    options: ["Frontend", "Backend", "Fullstack", "Data"],
+    options: [
+      { id: "frontend", label: "Frontend" },
+      { id: "backend", label: "Backend" },
+      { id: "fullstack", label: "Fullstack" },
+      { id: "data", label: "Data" },
+    ],
+  },
+};
+
+export const WithSelection: Story = {
+  args: {
+    size: "small",
+    options: statusOptions,
+    selectedOption: "evaluated",
   },
 };
 
