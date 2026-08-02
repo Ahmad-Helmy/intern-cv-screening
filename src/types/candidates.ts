@@ -1,3 +1,5 @@
+import type { Internship } from "./internships";
+
 export interface Status {
   status: "Imported" | "Processing" | "Evaluated" | "Nominated" | "Rejected";
 }
@@ -48,11 +50,12 @@ export interface Candidate {
   gpa: number;
   status: Status;
   score: number;
-  isNominated: boolean;
+  isNominated?: boolean;
   videoStatus: VideoStatus;
   recommendation: Recommendation;
   phone: string;
   trackPreference: string;
   profile?: CandidateProfile;
   evaluation?: CandidateEvaluation;
+  internships: Internship[];
 }
