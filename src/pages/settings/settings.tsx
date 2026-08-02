@@ -8,10 +8,25 @@ import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle.tsx";
 import suitcaseIcon from "../../assets/icons/briefcase.svg";
 import InternshipDetailsCard from "./components/internshipDetailsCard/InternshipDetailsCard.tsx";
 import ScoringCriteriaCard from "./components/scoringCritereaCard/scoringCriteraCard.tsx";
+import { useEffect, useState } from "react";
+import { getInternships } from "../../services/internships.ts";
+import Title from "../../UI/Atoms/Title/Title.tsx";
 
 const suitcase = <img src={suitcaseIcon} alt="suicase-icon" />;
 
 const Settings: React.FC = () => {
+  const [internships, setInternships] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function initializeInternships() {
+      const data = await getInternships();
+      console.log(data);
+
+      setInternships(data);
+    }
+    initializeInternships();
+  }, []);
+
   return (
     <>
       <header>
@@ -23,11 +38,18 @@ const Settings: React.FC = () => {
       </header>
       <div className="settings">
         <div className="internships-panel">
-          <CardInfo title="Internships" icon={suitcase}>
-            <div className="card-info-header-row">
-              <Badge text={"2"} type="default" />
-              <Button text="+ New" variant="primary" onClick={() => {}} />
-            </div>
+          <CardInfo
+            title={
+              <div className="card-info-header-row">
+                <Title type="large" variant="primary">
+                  Internships
+                </Title>
+                <Badge text={"2"} type="default" />
+                <Button text="+ New" variant="primary" onClick={() => {}} />
+              </div>
+            }
+            icon={suitcase}
+          >
             <div className="intersnhip-list">
               <div className="internship-card">
                 <InfoTitle
