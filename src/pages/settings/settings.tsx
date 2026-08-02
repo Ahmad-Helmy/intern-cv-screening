@@ -7,6 +7,7 @@ import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle.tsx";
 import suitcaseIcon from "../../assets/icons/briefcase.svg";
 import InternshipDetailsCard from "./components/internshipDetailsCard/InternshipDetailsCard.tsx";
+import ScoringCriteriaCard from "./components/scoringCritereaCard/scoringCriteraCard.tsx";
 
 const suitcase = <img src={suitcaseIcon} alt="suicase-icon" />;
 
@@ -43,6 +44,7 @@ const Settings: React.FC = () => {
             </div>
           </CardInfo>
           <InternshipDetailsCard />
+          <ScoringCriteriaCard />
         </div>
       </div>
     </>

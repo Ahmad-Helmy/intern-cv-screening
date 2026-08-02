@@ -26,9 +26,7 @@ export default function InternshipDetailsCard() {
           <InputField name="DURATION (WEEKS)" value="8" />
 
           <div className="status-field">
-            <Title type="medium" variant="secondary">
-              Status
-            </Title>
+            <p className="label">Status</p>
             <DropdownMenu
               size="large"
               options={["Open", "Closed", "Draft"]}
