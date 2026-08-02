@@ -76,7 +76,6 @@ const Candidates = () => {
                 onChange={(e) => {
                   handleGetCandidates({ search: e.target.value });
                   setSearchValue(e.target.value);
-                  // handleGetCandidates(selectedInternship);
                 }}
               />
             }
@@ -99,6 +98,7 @@ const Candidates = () => {
                 selectedOption={selectedStatus}
                 onChange={(value) => {
                   setSelectedStatus(value as CandidateStatus);
+                  handleGetCandidates({ status: value as CandidateStatus });
                 }}
               />
             }
