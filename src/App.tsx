@@ -1,6 +1,5 @@
-import "./App.css";
 import { Navigate, Route, Routes } from "react-router";
-// import { Outlet } from "react-router";
+import "./App.css";
 import CandidateDetails from "./pages/candidate-details/candidate-details";
 import Candidates from "./pages/candidates/candidates";
 import LoginPage from "./pages/login/Login";

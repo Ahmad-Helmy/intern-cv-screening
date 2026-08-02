@@ -1,10 +1,10 @@
+import "./Login.css";
 import { useState } from "react";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import Logo from "../../UI/Atoms/Logo/Logo";
 import Title from "../../UI/Atoms/Title/Title";
 import Button from "../../UI/Atoms/Buttons/Button";
 import InputField from "../../UI/Atoms/InputField/InputField";
-import "./Login.css";
 import { useAuth } from "../../context/auth-context";
 import { Navigate } from "react-router";
 

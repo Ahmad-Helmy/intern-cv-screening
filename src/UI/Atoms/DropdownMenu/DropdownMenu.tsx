@@ -26,7 +26,9 @@ export default function DropdownMenu({
       </option>
 
       {options.map((option) => (
-        <option> {option} </option>
+        <option key={option} value={option}>
+          {option}
+        </option>
       ))}
     </select>
   );
