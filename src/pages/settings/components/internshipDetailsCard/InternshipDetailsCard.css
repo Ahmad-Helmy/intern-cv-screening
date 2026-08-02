@@ -1,0 +1,53 @@
+.internship-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.internship-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.form-field label {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+}
+.status-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.DropdownMenu {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+
+.internship-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.left-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
