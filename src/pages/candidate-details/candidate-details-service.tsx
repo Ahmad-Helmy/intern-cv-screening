@@ -2,16 +2,16 @@ import type { ReactNode } from "react";
 import Badge, { type BadgeType } from "../../UI/Atoms/Badge/Badge";
 import ColoredNumber from "../../UI/Atoms/ColoredNumber/ColoredNumber";
 import type {
-  Candidate,
-  Status,
+  CandidateDetail,
+  CandidateStatus,
   VideoStatus,
   Recommendation,
   ScoreBreakdownItem,
-} from "../../types/candidates";
+} from "../../types/api/candidates";
 
 const FALLBACK = "-";
 
-const getStatusBadgeType = (status: Status["status"]): BadgeType => {
+const getStatusBadgeType = (status: CandidateStatus): BadgeType => {
   switch (status) {
     case "Imported":
       return "imported";
@@ -28,7 +28,7 @@ const getStatusBadgeType = (status: Status["status"]): BadgeType => {
   }
 };
 
-const getVideoStatusBadgeType = (status: VideoStatus["status"]): BadgeType => {
+const getVideoStatusBadgeType = (status: VideoStatus): BadgeType => {
   switch (status) {
     case "Pass":
       return "evaluated";
@@ -39,15 +39,19 @@ const getVideoStatusBadgeType = (status: VideoStatus["status"]): BadgeType => {
   }
 };
 
-const getRecommendationBadgeType = (
-  status: Recommendation["status"],
-): BadgeType => {
+const RECOMMENDATION_LABEL: Record<Recommendation, string> = {
+  StronglyRecommended: "Strongly Recommended",
+  Recommended: "Recommended",
+  NotRecommended: "Not Recommended",
+};
+
+const getRecommendationBadgeType = (status: Recommendation): BadgeType => {
   switch (status) {
-    case "Strongly Recommended":
+    case "StronglyRecommended":
       return "nominated";
     case "Recommended":
       return "evaluated";
-    case "Not Recommended":
+    case "NotRecommended":
       return "rejected";
     default:
       return "default";
@@ -60,14 +64,12 @@ export const getScoreLevel = (score: number): "high" | "mid" | "low" => {
   return "low";
 };
 
-export const renderStatusBadge = (status?: Status["status"]): ReactNode => {
+export const renderStatusBadge = (status?: CandidateStatus): ReactNode => {
   if (!status) return FALLBACK;
   return <Badge text={status} type={getStatusBadgeType(status)} />;
 };
 
-export const renderVideoStatusBadge = (
-  status?: VideoStatus["status"],
-): ReactNode => {
+export const renderVideoStatusBadge = (status?: VideoStatus): ReactNode => {
   if (!status) return FALLBACK;
   return (
     <Badge text={`Video: ${status}`} type={getVideoStatusBadgeType(status)} />
@@ -75,10 +77,15 @@ export const renderVideoStatusBadge = (
 };
 
 export const renderRecommendationBadge = (
-  status?: Recommendation["status"],
+  status?: Recommendation,
 ): ReactNode => {
   if (!status) return FALLBACK;
-  return <Badge text={status} type={getRecommendationBadgeType(status)} />;
+  return (
+    <Badge
+      text={RECOMMENDATION_LABEL[status]}
+      type={getRecommendationBadgeType(status)}
+    />
+  );
 };
 
 export const renderScore = (score?: number): ReactNode => {
@@ -126,30 +133,30 @@ export const mapScoreBreakdownToRows = (
   }));
 };
 
-export const getCandidateSummary = (candidate: Candidate) => {
+export const getCandidateSummary = (candidate: CandidateDetail) => {
   return {
     name: renderText(candidate.name),
     email: renderText(candidate.email),
     phone: renderText(candidate.phone),
     trackPreference: renderText(candidate.trackPreference),
-    statusBadge: renderStatusBadge(candidate.status.status),
-    videoStatusBadge: renderVideoStatusBadge(candidate.videoStatus.status),
+    statusBadge: renderStatusBadge(candidate.status),
+    videoStatusBadge: renderVideoStatusBadge(candidate.videoStatus),
     recommendationBadge: renderRecommendationBadge(
-      candidate.recommendation.status,
+      candidate.evaluation?.recommendation,
     ),
   };
 };
 
-export const getCandidateAcademicProfile = (candidate: Candidate) => {
+export const getCandidateAcademicProfile = (candidate: CandidateDetail) => {
   return {
-    university: renderText(candidate.university),
-    major: renderText(candidate.major),
-    gpa: formatGpa(candidate.gpa),
+    university: renderText(candidate.profile?.university),
+    major: renderText(candidate.profile?.major),
+    gpa: formatGpa(candidate.profile?.gpa),
     graduationYear: formatGraduationYear(candidate.profile?.graduationYear),
   };
 };
 
-export const getCandidateEvaluationSummary = (candidate: Candidate) => {
+export const getCandidateEvaluationSummary = (candidate: CandidateDetail) => {
   const evaluation = candidate.evaluation;
   if (!evaluation) return null;
 

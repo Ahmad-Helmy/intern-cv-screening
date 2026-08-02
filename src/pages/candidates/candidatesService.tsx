@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Badge, { type BadgeType } from "../../UI/Atoms/Badge/Badge";
 import ColoredNumber from "../../UI/Atoms/ColoredNumber/ColoredNumber";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
-import type { Candidate } from "../../types/candidates";
+import type { CandidateListItem } from "../../types/api/candidates";
 
 type CandidateFilters = {
   search?: string;
@@ -10,7 +10,7 @@ type CandidateFilters = {
   status?: string;
 };
 
-type CandidateStatus = Candidate["status"]["status"];
+type CandidateStatus = CandidateListItem["status"];
 
 const FALLBACK = "-";
 
@@ -72,7 +72,7 @@ const renderCandidate = (
 };
 
 export const mapCandidateToRow = (
-  candidate: Candidate,
+  candidate: CandidateListItem,
   onClickRow: (id: string) => void,
 ): Record<string, ReactNode> => {
   return {
@@ -82,30 +82,17 @@ export const mapCandidateToRow = (
     Uni: renderText(candidate.university),
     Major: renderText(candidate.major),
     GPA: renderText(candidate.gpa?.toString()),
-    Status: renderStatus(candidate.status?.status),
+    Status: renderStatus(candidate.status),
     Score: renderScore(candidate.score),
     Nominated: renderNominated(candidate.isNominated),
   };
 };
 
 export const mapCandidatesToRows = (
-  candidates: Candidate[],
-  filters: CandidateFilters,
+  candidates: CandidateListItem[],
   onClickRow: (id: string) => void,
 ): Record<string, ReactNode>[] => {
-  const filteredCandidates = candidates.filter((candidate) => {
-    const matchesStatus =
-      !filters.status ||
-      filters.status === "All Statuses" ||
-      candidate.status?.status === filters.status;
-    const matchesSearch =
-      !filters.search ||
-      `${candidate.name} ${candidate.email} ${candidate.university} ${candidate.major}`
-        .toLowerCase()
-        .includes(filters.search.toLowerCase());
-    return matchesStatus && matchesSearch;
-  });
-  return filteredCandidates.map((candidate) =>
+  return candidates.map((candidate) =>
     mapCandidateToRow(candidate, onClickRow),
   );
 };
