@@ -9,24 +9,41 @@ import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
 import { useNavigate, useSearchParams } from "react-router";
+import { getInternships } from "../../services/internships";
+import { useEffect, useState } from "react";
+import { getCandidates } from "../../services/candidates";
 
 const Candidates = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const [internships, setInternships] = useState([]);
   const searchValue = searchParams.get("search") || "";
   const selectedInternship = searchParams.get("internship") || "";
   const selectedStatus = searchParams.get("status") || "";
 
-  const rows = mapCandidatesToRows(
-    candidateData,
-    {
-      search: searchValue,
-      internship: selectedInternship,
-      status: selectedStatus,
-    },
-    (id: string) => navigate(`/candidates/${id}`),
-  );
+  // const rows = mapCandidatesToRows(
+  //   candidateData,
+  //   {
+  //     search: searchValue,
+  //     internship: selectedInternship,
+  //     status: selectedStatus,
+  //   },
+  //   (id: string) => navigate(`/candidates/${id}`),
+  // );
+
+  useEffect(() => {
+    async function initializeInternships() {
+      const data = await getInternships();
+      setInternships(data);
+    }
+    initializeInternships();
+  }, []);
+
+  const handleGetCandidates = async (value) => {
+    const data = await getCandidates(value, {});
+    // TODO: set the candidates in useState and then use it in HTML
+  };
+
   const setParam = (key: string, value: string) =>
     setSearchParams((prev) => {
       if (value) {
@@ -65,12 +82,15 @@ const Candidates = () => {
               <DropdownMenu
                 size="small"
                 options={[
-                  "All Statuses",
-                  "Nominated",
-                  "Evaluated",
-                  "Rejected",
-                  "Processing",
-                  "Imported",
+                  {
+                    id: "All Statuses",
+                    label: "All Statuses",
+                  },
+                  { id: "Nominated", label: "Nominated" },
+                  { id: "Evaluated", label: "Evaluated" },
+                  { id: "Rejected", label: "Rejected" },
+                  { id: "Processing", label: "Processing" },
+                  { id: "Imported", label: "Imported" },
                 ]}
                 selectedOption={selectedStatus}
                 onChange={(value) => setParam("status", value)}
@@ -94,9 +114,18 @@ const Candidates = () => {
         <DropdownMenu
           size="large"
           options={[
-            "Software Engineering Summer Internship 2026",
-            "Data Science Internship 2026",
-            "Cloud & DevOps Internship 2026",
+            {
+              id: "Software Engineering Summer Internship 2026",
+              label: "Software Engineering Summer Internship 2026",
+            },
+            {
+              id: "Data Science Internship 2026",
+              label: "Data Science Internship 2026",
+            },
+            {
+              id: "Cloud & DevOps Internship 2026",
+              label: "Cloud & DevOps Internship 2026",
+            },
           ]}
           selectedOption={selectedInternship}
           onChange={(value) => {
