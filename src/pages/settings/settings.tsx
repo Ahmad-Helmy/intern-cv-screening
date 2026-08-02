@@ -6,7 +6,7 @@ import Button from "../../UI/Atoms/Buttons/Button.tsx";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle.tsx";
 import suitcaseIcon from "../../assets/icons/briefcase.svg";
-// import Card from "../../UI/Atoms/Card/Card.tsx";
+import InternshipDetailsCard from "./components/internshipDetailsCard/InternshipDetailsCard.tsx";
 
 const suitcase = <img src={suitcaseIcon} alt="suicase-icon" />;
 
@@ -42,6 +42,7 @@ const Settings: React.FC = () => {
               </div>
             </div>
           </CardInfo>
+          <InternshipDetailsCard />
         </div>
       </div>
     </>

@@ -21,8 +21,12 @@
   font-size: 12px;
   font-weight: 600;
 }
-
-.InputField,
+.status-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
 .DropdownMenu {
   width: 100%;
   height: 40px;

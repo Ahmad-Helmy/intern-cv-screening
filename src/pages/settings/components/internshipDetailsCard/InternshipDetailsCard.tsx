@@ -1,13 +1,14 @@
-import CardInfo from "../../Molecules/CardInfo/CardInfo";
-import InputField from "../../Atoms/InputField/InputField";
-import DropdownMenu from "../../Atoms/DropdownMenu/DropdownMenu";
-import Button from "../../Atoms/Buttons/Button";
 import "./InternshipDetailsCard.css";
-import BriefCaseIcon from "../../../assets/icons/briefcase.svg";
-import SaveIcon from "../../../assets/icons/save.svg";
-import DeleteIcon from "../../../assets/icons/trash.svg";
+import CardInfo from "../../../../UI/Molecules/CardInfo/CardInfo";
+import InputField from "../../../../UI/Atoms/InputField/InputField";
+import Title from "../../../../UI/Atoms/Title/Title";
+import DropdownMenu from "../../../../UI/Atoms/DropdownMenu/DropdownMenu";
+import Button from "../../../../UI/Atoms/Buttons/Button";
+import BriefCaseIcon from "../../../../assets/icons/briefcase.svg";
+import SaveIcon from "../../../../assets/icons/save.svg";
+import DeleteIcon from "../../../../assets/icons/trash.svg";
 
-export default function InternshipDetails() {
+export default function InternshipDetailsCard() {
   return (
     <CardInfo
       title="Internship details"
@@ -25,9 +26,11 @@ export default function InternshipDetails() {
           <InputField name="DURATION (WEEKS)" value="8" />
 
           <div className="status-field">
+            <Title type="medium" variant="secondary">
+              Status
+            </Title>
             <DropdownMenu
-              label="STATUS"
-              size="medium"
+              size="large"
               options={["Open", "Closed", "Draft"]}
               onChange={(value) => console.log(value)}
             />
