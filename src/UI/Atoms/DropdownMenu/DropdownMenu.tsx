@@ -1,7 +1,12 @@
 import "./DropdownMenu.css";
 
+interface Option {
+  id: string;
+  label: string;
+}
+
 type DropdownMenu_props = {
-  options?: string[];
+  options?: Option[];
   size: "small" | "large";
   placeholder?: string;
   selectedOption?: string;
@@ -9,7 +14,7 @@ type DropdownMenu_props = {
 };
 
 export default function DropdownMenu({
-  options = ["no items"],
+  options = [{ id: "0", label: "no items" }],
   size,
   onChange,
   placeholder = "Select an Option",
@@ -26,8 +31,8 @@ export default function DropdownMenu({
       </option>
 
       {options.map((option) => (
-        <option key={option} value={option}>
-          {option}
+        <option key={option.id} value={option.id}>
+          {option.label}
         </option>
       ))}
     </select>

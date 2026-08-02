@@ -65,12 +65,15 @@ const Candidates = () => {
               <DropdownMenu
                 size="small"
                 options={[
-                  "All Statuses",
-                  "Nominated",
-                  "Evaluated",
-                  "Rejected",
-                  "Processing",
-                  "Imported",
+                  {
+                    id: "All Statuses",
+                    label: "All Statuses",
+                  },
+                  { id: "Nominated", label: "Nominated" },
+                  { id: "Evaluated", label: "Evaluated" },
+                  { id: "Rejected", label: "Rejected" },
+                  { id: "Processing", label: "Processing" },
+                  { id: "Imported", label: "Imported" },
                 ]}
                 selectedOption={selectedStatus}
                 onChange={(value) => setParam("status", value)}
@@ -94,9 +97,18 @@ const Candidates = () => {
         <DropdownMenu
           size="large"
           options={[
-            "Software Engineering Summer Internship 2026",
-            "Data Science Internship 2026",
-            "Cloud & DevOps Internship 2026",
+            {
+              id: "Software Engineering Summer Internship 2026",
+              label: "Software Engineering Summer Internship 2026",
+            },
+            {
+              id: "Data Science Internship 2026",
+              label: "Data Science Internship 2026",
+            },
+            {
+              id: "Cloud & DevOps Internship 2026",
+              label: "Cloud & DevOps Internship 2026",
+            },
           ]}
           selectedOption={selectedInternship}
           onChange={(value) => {
