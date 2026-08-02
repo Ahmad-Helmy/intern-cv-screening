@@ -1,5 +1,5 @@
 /**
- * PLACEHOLDER — scoring-criteria contract.
+ * Scoring-criteria API contract.
  *
  * All four endpoints use the envelope:
  *   GET    /internships/:internshipId/scoring-criteria
@@ -16,11 +16,46 @@
  * it belongs on the response type but not on the create/update bodies.
  */
 
-/** TODO(intern): the criteria as returned by the server. */
-export type ScoringCriteria = unknown;
+/** The criteria as returned by the server. */
+export interface ScoringCriteria {
+  readonly id: string;
+  readonly internshipId: string;
+  name: string;
+  isActive: boolean;
+  majorMatchWeight: number;
+  technicalSkillsWeight: number;
+  projectsWeight: number;
+  experienceWeight: number;
+  academicPerformanceWeight: number;
+  extracurricularsWeight: number;
+  communicationWeight: number;
+  readonly totalWeight: number;
+  minimumGPA: number | null;
+  minGraduationYear: number | null;
+  maxGraduationYear: number | null;
+  minimumVideoFluencyScore: number;
+  minimumVideoPresentationScore: number;
+  nominationCount: number;
+}
 
-/** TODO(intern): the POST body. Compare with `ScoringCriteriaBody` in the handlers. */
-export type ScoringCriteriaCreate = unknown;
+/** The POST body. Server-owned fields are deliberately excluded. */
+export interface ScoringCriteriaCreate {
+  name: string;
+  isActive: boolean;
+  majorMatchWeight: number;
+  technicalSkillsWeight: number;
+  projectsWeight: number;
+  experienceWeight: number;
+  academicPerformanceWeight: number;
+  extracurricularsWeight: number;
+  communicationWeight: number;
+  minimumGPA?: number | null;
+  minGraduationYear?: number | null;
+  maxGraduationYear?: number | null;
+  minimumVideoFluencyScore: number;
+  minimumVideoPresentationScore: number;
+  nominationCount: number;
+}
 
-/** TODO(intern): the PUT body. */
-export type ScoringCriteriaUpdate = unknown;
+/** The PUT body. PUT replaces the same client-owned fields accepted by POST. */
+export type ScoringCriteriaUpdate = ScoringCriteriaCreate;
