@@ -1,47 +1,24 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
-import { useNavigate } from "react-router"
-
+import { createContext, useContext } from "react";
 import type { User } from "../types/users";
 
+// Public-facing user shape. We strip "password" here instead of trusting
+// every call site to remember not to store it.
+export type SessionUser = Omit<User, "password">;
 
-interface AuthContextValue {
-  user: User | null;
-  login: (email: string, password: string) => void;
-  logout: () => void;
+export type AuthContextShape = {
+  currentUser: SessionUser | null;
+  signIn: (email: string, password: string) => boolean;
+  signOut: () => void;
+};
+
+export const AuthContext = createContext<AuthContextShape | undefined>(
+  undefined,
+);
+
+export function useAuth(): AuthContextShape {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth() was called outside of an AuthProvider tree");
+  }
+  return context;
 }
-
-const AuthContext = createContext<AuthContextValue | null>(null);
-
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const navigate = useNavigate();
-
-
-  const login = (email: string, password: string) => {
-    
-    if (email === "demo@celfocus.com" && password === "demo123") {
-      setUser({
-        id: "temp-id",
-        email: "demo@celfocus.com",
-        name: "Demo Recruiter",
-        password: "demo123",
-      });
-      console.log({["Auth-context"] : user});
-      navigate("/");
-    }
-  };
-
-  const logout = () => {
-    setUser(null);
-  };
-
-  const value: AuthContextValue = { user, login, logout };
-
-  return <AuthContext value={value}>{children}</AuthContext>;
-};
-
-export const useAuth = () => {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used inside <AuthProvider>");
-  return ctx;
-};

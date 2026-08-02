@@ -5,10 +5,10 @@ import candidates from "../../../assets/icons/users.svg";
 import "./SideBar.css";
 import Button from "../../Atoms/Buttons/Button.tsx";
 import signout from "../../../assets/icons/logout.svg";
-import { useAuth } from "../../../context/auth-context";
+import { useAuth } from "../../../context/auth-context.tsx";
 
 function Sidebar() {
-  const { user, logout } = useAuth();
+  const { currentUser, signOut } = useAuth();
 
   return (
     <>
@@ -24,16 +24,18 @@ function Sidebar() {
 
         <div className="sidebar_footer">
           <div className="sidebar_profile">
-            <div className="sidebar_avatar">{user?.name?.[0] ?? "U"}</div>
+            <div className="sidebar_avatar">
+              {currentUser?.name?.[0] ?? "U"}
+            </div>
             <div className="sidebar_user">
-              <strong>{user?.name ?? "User"}</strong>
-              <span>{user?.email ?? "Role"}</span>
+              <strong>{currentUser?.name ?? "User"}</strong>
+              <span>{currentUser?.email ?? "Role"}</span>
             </div>
           </div>
           <Button
             text="Sign Out"
             variant="transparent"
-            onClick={logout}
+            onClick={signOut}
             icon={<img src={signout} alt={"sign out"} />}
           />
         </div>
