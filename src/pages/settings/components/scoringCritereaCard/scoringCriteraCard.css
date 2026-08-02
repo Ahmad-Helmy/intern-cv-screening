@@ -22,7 +22,6 @@
 }
 
 .form-field label {
-  margin-bottom: 6px;
   text-align: left;
   font-size: 12px;
   font-weight: 600;
@@ -39,6 +38,7 @@
 .scoring-criteria-section {
   display: flex;
   flex-direction: column;
+  align-items: start;
   gap: 12px;
 }
 

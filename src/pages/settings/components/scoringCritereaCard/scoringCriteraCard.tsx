@@ -5,6 +5,7 @@ import Button from "../../../../UI/Atoms/Buttons/Button";
 import CheckListIcon from "../../../../assets/icons/list-checks.svg";
 import SaveIcon from "../../../../assets/icons/save.svg";
 import DeleteIcon from "../../../../assets/icons/trash.svg";
+import Badge from "../../../../UI/Atoms/Badge/Badge";
 
 export default function ScoringCriteriaCard() {
   const weights = {
@@ -36,11 +37,7 @@ export default function ScoringCriteriaCard() {
         <div className="scoring-criteria-section">
           <div className="section-header">
             <p className="label">WEIGHTS</p>
-            <span
-              className={`weight-sum-badge ${weightSum === 100 ? "valid" : "invalid"}`}
-            >
-              Σ = {weightSum} / 100
-            </span>
+            <Badge text={"Σ = {weightSum} / 100"} type="nominated" />
           </div>
 
           <div className="weights-row">
