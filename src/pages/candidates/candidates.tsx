@@ -20,38 +20,51 @@ import type { InternshipListItem } from "../../types/api/internships";
 
 const Candidates = () => {
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState<
-    CandidateStatus | undefined
-  >(undefined);
-  const [selectedInternship, setSelectedInternship] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedInternship = searchParams.get("internship") ?? "";
+  const selectedStatus =
+    (searchParams.get("status") as CandidateStatus | null) ?? undefined;
+  const searchValue = searchParams.get("search") ?? "";
+
   const [internships, setInternships] = useState<InternshipListItem[]>([]);
   const [candidates, setCandidates] = useState<CandidateListItem[]>([]);
 
   useEffect(() => {
     async function initializeInternships() {
       const data = await getInternships();
-      console.log(data);
-
       setInternships(data);
     }
     initializeInternships();
   }, []);
 
-  const handleGetCandidates = async ({
-    id,
-    search,
-    status,
-  }: {
-    id?: string;
-    search?: string;
-    status?: CandidateStatus;
-  }) => {
-    const data = await getCandidates(id || selectedInternship, {
-      search: search || searchValue,
-      status: status || selectedStatus,
+  useEffect(() => {
+    if (!selectedInternship) {
+      setCandidates([]);
+      return;
+    }
+
+    getCandidates(selectedInternship, {
+      search: searchValue || undefined,
+      status: selectedStatus,
+    })
+      .then(setCandidates)
+      .catch((err) => {
+        console.error("failed to load candidates:", err);
+        setCandidates([]);
+      });
+  }, [selectedInternship, searchValue, selectedStatus]);
+
+  const updateParam = (key: string, value: string | undefined) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) {
+        next.set(key, value);
+      } else {
+        next.delete(key);
+      }
+      return next;
     });
-    setCandidates(data);
   };
 
   const getCardTitle = () => {
@@ -74,8 +87,7 @@ const Candidates = () => {
                 placeholder="Search candidates..."
                 value={searchValue}
                 onChange={(e) => {
-                  handleGetCandidates({ search: e.target.value });
-                  setSearchValue(e.target.value);
+                  updateParam("search", e.target.value || undefined);
                 }}
               />
             }
@@ -97,8 +109,10 @@ const Candidates = () => {
                 ]}
                 selectedOption={selectedStatus}
                 onChange={(value) => {
-                  setSelectedStatus(value as CandidateStatus);
-                  handleGetCandidates({ status: value as CandidateStatus });
+                  updateParam(
+                    "status",
+                    value === "All Statuses" ? undefined : value,
+                  );
                 }}
               />
             }
@@ -125,8 +139,7 @@ const Candidates = () => {
           }))}
           selectedOption={selectedInternship}
           onChange={(value) => {
-            setSelectedInternship(value);
-            handleGetCandidates({ id: value });
+            updateParam("internship", value || undefined);
           }}
         />
       </div>
