@@ -92,11 +92,10 @@ export type ScoreBreakdownItem = {
   contribution: number;
 };
 
-/**
- * TODO(intern): the query string the list endpoint understands.
- *
- * The handler reads: search, status, isNominated, sortBy ("score" | "name"),
- * sortAsc. All optional — omit them and you get every candidate, sorted by
- * score descending.
- */
-export type CandidatesQuery = unknown;
+export type CandidatesQuery = {
+  search?: string;
+  status?: CandidateStatus;
+  isNominated?: boolean;
+  sortBy?: "score" | "name";
+  sortAsc?: boolean;
+};

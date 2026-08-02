@@ -9,14 +9,33 @@ import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
 import { useNavigate, useSearchParams } from "react-router";
+import { getCandidates } from "../../services/candidates";
+import { useState } from "react";
+import { type CandidateStatus } from "../../types/api/candidates";
 
 const Candidates = () => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState<
+    CandidateStatus | undefined
+  >(undefined);
+  const [selectedInternship, setSelectedInternship] = useState("");
 
-  const searchValue = searchParams.get("search") || "";
-  const selectedInternship = searchParams.get("internship") || "";
-  const selectedStatus = searchParams.get("status") || "";
+  const handleGetCandidates = async ({
+    id,
+    search,
+    status,
+  }: {
+    id?: string;
+    search?: string;
+    status?: CandidateStatus;
+  }) => {
+    const data = await getCandidates(id || selectedInternship, {
+      search: search || searchValue,
+      status: status || selectedStatus,
+    });
+    return data;
+  };
 
   const rows = mapCandidatesToRows(
     candidateData,
@@ -27,15 +46,6 @@ const Candidates = () => {
     },
     (id: string) => navigate(`/candidates/${id}`),
   );
-  const setParam = (key: string, value: string) =>
-    setSearchParams((prev) => {
-      if (value) {
-        prev.set(key, value);
-      } else {
-        prev.delete(key);
-      }
-      return prev;
-    });
 
   const getCardTitle = () => {
     if (!selectedInternship) {
@@ -56,7 +66,11 @@ const Candidates = () => {
               <InputField
                 placeholder="Search candidates..."
                 value={searchValue}
-                onChange={(e) => setParam("search", e.target.value)}
+                onChange={(e) => {
+                  handleGetCandidates({ search: e.target.value });
+                  setSearchValue(e.target.value);
+                  // handleGetCandidates(selectedInternship);
+                }}
               />
             }
           </div>
@@ -76,7 +90,9 @@ const Candidates = () => {
                   { id: "Imported", label: "Imported" },
                 ]}
                 selectedOption={selectedStatus}
-                onChange={(value) => setParam("status", value)}
+                onChange={(value) => {
+                  setSelectedStatus(value as CandidateStatus);
+                }}
               />
             }
           </div>
@@ -112,7 +128,8 @@ const Candidates = () => {
           ]}
           selectedOption={selectedInternship}
           onChange={(value) => {
-            setParam("internship", value);
+            setSelectedInternship(value);
+            handleGetCandidates({ id: value });
           }}
         />
       </div>
