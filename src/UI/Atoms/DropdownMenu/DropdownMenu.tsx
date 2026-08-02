@@ -21,7 +21,7 @@ export default function DropdownMenu({
       onChange={(event) => onChange(event.target.value)}
       value={selectedOption}
     >
-      <option value="" disabled hidden>
+      <option value="" selected disabled hidden>
         {placeholder}
       </option>
 
