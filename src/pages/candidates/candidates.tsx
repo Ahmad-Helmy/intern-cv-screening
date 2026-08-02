@@ -62,7 +62,7 @@ const Candidates = () => {
       <div className="candidates-header">
         <div className="candidates-header-title">
           <Title type="medium" variant="primary">
-            {selectedInternship}
+            {internships.find((i) => i.id === selectedInternship)?.name}
           </Title>
           <Badge type="evaluated" text={candidates.length + " candidates"} />
         </div>
