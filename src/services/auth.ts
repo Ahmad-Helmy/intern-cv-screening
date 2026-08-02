@@ -25,6 +25,7 @@ export const postLogin = async (
   request: LoginRequest,
 ): Promise<AuthTokenResponse> => {
   const response = await api.post<AuthTokenResponse>("/auth/login", request);
+  console.log("postLogin response:", response.data); // Log the response data for debugging
   return response.data;
 };
 
