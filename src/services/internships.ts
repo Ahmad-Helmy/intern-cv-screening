@@ -13,7 +13,7 @@
  */
 
 import api from "./api";
-import type { ResponseModel } from "../types/api/common";
+import { unwrapResponseModel, type ResponseModel } from "../types/api/common";
 import type {
   InternshipCreate,
   InternshipDetail,
@@ -47,7 +47,7 @@ export const getInternshipById = async (
   const response = await api.get<ResponseModel<InternshipDetail>>(
     `/internships/${id}`,
   );
-  return response.data.data;
+  return unwrapResponseModel(response.data);
 };
 
 /**
@@ -62,7 +62,7 @@ export const createInternship = async (
     "/internships",
     model,
   );
-  return response.data.data;
+  return unwrapResponseModel(response.data);
 };
 
 /**
@@ -73,9 +73,12 @@ export const updateInternship = async (
   id: string,
   model: InternshipUpdate,
 ): Promise<InternshipDetail | null> => {
-  throw new Error(
-    `updateInternship is not implemented yet (id: ${id}, payload: ${JSON.stringify(model)})`,
+  const response = await api.put<ResponseModel<InternshipDetail>>(
+    `/internships/${id}`,
+    model,
   );
+
+  return unwrapResponseModel(response.data);
 };
 
 /**
@@ -83,5 +86,8 @@ export const updateInternship = async (
  * record, but the caller probably only cares that it succeeded.
  */
 export const deleteInternship = async (id: string): Promise<void> => {
-  throw new Error(`deleteInternship is not implemented yet (id: ${id})`);
+  const response = await api.delete<ResponseModel<InternshipDetail>>(
+    `/internships/${id}`,
+  );
+  unwrapResponseModel(response.data);
 };

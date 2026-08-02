@@ -1,5 +1,5 @@
 /**
- * Scoring-criteria service — PLACEHOLDER.
+ * Scoring-criteria service.
  *
  * All four endpoints are nested under an internship and all use the
  * ResponseModel envelope:
@@ -10,11 +10,13 @@
  *
  * Special case: an internship with no criteria yet answers `isSuccessful: false`
  * with code "003". That is a normal empty state (the settings page should show
- * an empty form), not an error to report.
+ * an empty form), not an error to report — unwrapResponseModel() handles that
+ * for us and resolves to null instead of throwing.
  */
 
 import api from "./api";
 import type { ResponseModel } from "../types/api/common";
+import { unwrapResponseModel } from "../types/api/common";
 import type {
   ScoringCriteria,
   ScoringCriteriaCreate,
@@ -22,11 +24,10 @@ import type {
 } from "../types/api/scoring-criteria";
 
 /**
- * EXAMPLE (GET, envelope response with an expected failure).
+ * GET, envelope response with an expected failure.
  *
- * TODO(intern): uncomment the guard below once ResponseModel has its
- * `isSuccessful` and `code` fields — "no criteria yet" is a valid answer and
- * should hand back null instead of throwing.
+ * "No criteria yet" (code "003") is a valid answer and hands back null
+ * instead of throwing.
  */
 export const getScoringCriteria = async (
   internshipId: string,
@@ -35,13 +36,11 @@ export const getScoringCriteria = async (
     `/internships/${internshipId}/scoring-criteria`,
   );
 
-  // if (!response.data.isSuccessful && response.data.code === "003") return null;
-
-  return response.data.data;
+  return unwrapResponseModel(response.data);
 };
 
 /**
- * EXAMPLE (POST, envelope response) — save criteria for the first time.
+ * POST, envelope response — save criteria for the first time.
  *
  * The server computes `totalWeight` from the seven weights, so don't send it.
  */
@@ -53,29 +52,32 @@ export const createScoringCriteria = async (
     `/internships/${internshipId}/scoring-criteria`,
     model,
   );
-  return response.data.data;
+  return unwrapResponseModel(response.data);
 };
 
 /**
- * TODO(intern): PUT — update the existing criteria. Same URL as the POST.
+ * PUT — update the existing criteria. Same URL as the POST.
  */
 export const updateScoringCriteria = async (
   internshipId: string,
   model: ScoringCriteriaUpdate,
 ): Promise<ScoringCriteria | null> => {
-  throw new Error(
-    `updateScoringCriteria is not implemented yet (internshipId: ${internshipId}, payload: ${JSON.stringify(model)})`,
+  const response = await api.put<ResponseModel<ScoringCriteria>>(
+    `/internships/${internshipId}/scoring-criteria`,
+    model,
   );
+  return unwrapResponseModel(response.data);
 };
 
 /**
- * TODO(intern): DELETE — removes the criteria and flips `hasScoringCriteria`
- * back to false on the parent internship, so refetch it afterwards.
+ * DELETE — removes the criteria and flips `hasScoringCriteria` back to false
+ * on the parent internship, so refetch it afterwards.
  */
 export const deleteScoringCriteria = async (
   internshipId: string,
 ): Promise<void> => {
-  throw new Error(
-    `deleteScoringCriteria is not implemented yet (internshipId: ${internshipId})`,
+  const response = await api.delete<ResponseModel<ScoringCriteria>>(
+    `/internships/${internshipId}/scoring-criteria`,
   );
+  unwrapResponseModel(response.data);
 };

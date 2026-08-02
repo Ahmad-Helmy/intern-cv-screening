@@ -8,8 +8,7 @@ import signout from "../../../assets/icons/logout.svg";
 import { useAuth } from "../../../context/auth-context";
 
 function Sidebar() {
-  const { logout } = useAuth();
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const { user, logout } = useAuth();
   return (
     <>
       <aside className="sidebar">
@@ -24,9 +23,9 @@ function Sidebar() {
 
         <div className="sidebar_footer">
           <div className="sidebar_profile">
-            <div className="sidebar_avatar">{user?.name?.[0] ?? "U"}</div>
+            <div className="sidebar_avatar">{user?.firstName?.[0] ?? "U"}</div>
             <div className="sidebar_user">
-              <strong>{user?.name ?? "User"}</strong>
+              <strong>{user?.firstName} {user?.lastName}</strong>
               <span>{user?.email ?? "Role"}</span>
             </div>
           </div>

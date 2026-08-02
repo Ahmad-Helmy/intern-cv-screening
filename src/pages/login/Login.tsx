@@ -13,17 +13,19 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { user, login } = useAuth();
-  if (user?.id) return <Navigate to="/candidates" replace />;
+  if (user) return <Navigate to="/candidates" replace />;
 
   const handleSignIn = () => {
     if (!email.trim() || !password.trim()) {
       setError("Please enter both email and password.");
       return;
     }
-    if (!user?.id) {
+    if (!user) {
       setError("Invalid email or password.");
     }
-    login(email, password);
+    login({ email, password }).catch(() => {
+      setError("Invalid email or password.");
+    });
   };
 
   return (

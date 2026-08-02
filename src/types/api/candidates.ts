@@ -12,26 +12,90 @@
  * flattened summary, the detail nests `profile` and `evaluation`.
  */
 
-/** TODO(intern): one row of the candidates table. Mind the optional fields. */
-export type CandidateListItem = unknown;
+export type CandidateStatus =
+  | "Imported"
+  | "Processing"
+  | "Evaluated"
+  | "Nominated"
+  | "Rejected";
 
-/** TODO(intern): the candidate details page payload. */
-export type CandidateDetail = unknown;
+export type VideoStatus =
+  | "Pending"
+  | "Processing"
+  | "Pass"
+  | "Fail"
+  | "NotProvided";
 
-/** TODO(intern): the CV-derived part of the detail — absent for Imported candidates. */
-export type CandidateProfile = unknown;
+export type Recommendation =
+  | "StronglyRecommended"
+  | "Recommended"
+  | "NotRecommended";
+
+export type CandidateListItem = {
+  id: string;
+  name: string;
+  email: string;
+  status: CandidateStatus;
+  videoStatus: VideoStatus;
+  isNominated: boolean;
+  score?: number;
+  recommendation?: string;
+  university?: string;
+  major?: string;
+  gpa?: number;
+};
+
+export type CandidateDetail = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  trackPreference: string;
+  status: CandidateStatus;
+  videoStatus: VideoStatus;
+  profile?: CandidateProfile;
+  evaluation?: CandidateEvaluation;
+};
+
+export type CandidateProfile = {
+  university: string;
+  major: string;
+  graduationYear: number;
+  gpa: number;
+  skills: string[];
+  projects: string[];
+  experience: string[];
+  certifications: string[];
+  languages: string[];
+  extracurriculars: string[];
+};
 
 /** TODO(intern): the AI evaluation — absent until the candidate is evaluated. */
-export type CandidateEvaluation = unknown;
-
+export type CandidateEvaluation = {
+  score: number;
+  isNominated: boolean;
+  recommendation: Recommendation;
+  selectionReason: string;
+  reportText: string;
+  videoFluencyScore: number;
+  videoPresentationScore: number;
+  scoreBreakdown: ScoreBreakdownItem[];
+  strengths: string[];
+  weaknesses: string[];
+  riskNotes: string[];
+};
 /** TODO(intern): one row of `evaluation.scoreBreakdown`. */
-export type ScoreBreakdownItem = unknown;
+export type ScoreBreakdownItem = {
+  dimension: string;
+  score: number;
+  weight: number;
+  contribution: number;
+};
 
-/**
- * TODO(intern): the query string the list endpoint understands.
- *
- * The handler reads: search, status, isNominated, sortBy ("score" | "name"),
- * sortAsc. All optional — omit them and you get every candidate, sorted by
- * score descending.
- */
-export type CandidatesQuery = unknown;
+export type CandidatesQuery = {
+  search?: string;
+  status?: CandidateStatus;
+  isNominated?: boolean;
+  sortBy?: "score" | "name";
+  sortAsc?: boolean;
+};
