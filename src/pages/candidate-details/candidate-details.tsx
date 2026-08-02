@@ -1,3 +1,5 @@
+// candidate-details.tsx
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./candidate-details.css";
 import BackButton from "../../UI/Atoms/TextButton/BackButton";
@@ -9,7 +11,8 @@ import videoIcon from "../../assets/icons/video.svg";
 import strengthsIcon from "../../assets/icons/check-circle.svg";
 import weaknessesIcon from "../../assets/icons/alert-circle.svg";
 import riskIcon from "../../assets/icons/alert-triangle.svg";
-import { candidatesMockData } from "./mockData";
+import { getCandidateById } from "../../services/candidates";
+import type { CandidateDetail } from "../../types/api/candidates";
 import {
   getCandidateSummary,
   getCandidateAcademicProfile,
@@ -21,15 +24,55 @@ const CandidateDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const candidate = candidatesMockData.find((c) => c.id === id);
+  const [candidate, setCandidate] = useState<CandidateDetail | null>(null);
+  const [status, setStatus] = useState<
+    "loading" | "ready" | "not-found" | "error"
+  >("loading");
 
-  if (!candidate) {
+  useEffect(() => {
+    if (!id) {
+      setStatus("not-found");
+      return;
+    }
+
+    setStatus("loading");
+    getCandidateById(id)
+      .then((data) => {
+        setCandidate(data);
+        setStatus("ready");
+      })
+      .catch((err) => {
+        if (err?.response?.status === 404) {
+          setStatus("not-found");
+        } else {
+          console.error("failed to load candidate:", err);
+          setStatus("error");
+        }
+      });
+  }, [id]);
+
+  if (status === "loading") {
     return (
       <div className="details-conatiner">
         <div className="back-btn">
           <BackButton label="Back to Candidates" onClick={() => navigate(-1)} />
         </div>
-        <p className="description">Candidate not found.</p>
+        <p className="description">Loading...</p>
+      </div>
+    );
+  }
+
+  if (status === "error" || status === "not-found" || !candidate) {
+    return (
+      <div className="details-conatiner">
+        <div className="back-btn">
+          <BackButton label="Back to Candidates" onClick={() => navigate(-1)} />
+        </div>
+        <p className="description">
+          {status === "error"
+            ? "Something went wrong."
+            : "Candidate not found."}
+        </p>
       </div>
     );
   }
