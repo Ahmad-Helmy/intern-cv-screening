@@ -2,11 +2,11 @@
  * PLACEHOLDER — internships contract.
  *
  * Endpoints:
- *   GET    /internships       → plain array of { id, name }
- *   GET    /internships/:id   → envelope around the full internship
- *   POST   /internships       → envelope
- *   PUT    /internships/:id   → envelope
- *   DELETE /internships/:id   → envelope (returns the removed record)
+ *   GET    /internships       → plain array of { id, name } (InternshipListItem [])
+ *   GET    /internships/:id   → envelope around the full internship (InternshipDetail)
+ *   POST   /internships       → envelope (InternshipCreate)
+ *   PUT    /internships/:id   → envelope (InternshipUpdate)
+ *   DELETE /internships/:id   → envelope (returns the removed record) (InternshipDetail)
  *
  * Mock: src/mocks/handlers.ts, `internships` / `internshipListItems`
  *       in src/mocks/data.ts.
@@ -15,14 +15,30 @@
  * exposes `title`. Statuses are "Draft" | "Open" | "Closed".
  */
 
-/** TODO(intern): the dropdown shape returned by GET /internships. */
-export type InternshipListItem = unknown;
+export type InternshipStatus = "Draft" | "Open" | "Closed";
 
-/** TODO(intern): the full internship. Some fields are nullable. */
-export type InternshipDetail = unknown;
+export type InternshipListItem = {
+  id: string;
+  name: string;
+};
 
-/** TODO(intern): the POST body. Compare with `InternshipBody` in the handlers. */
-export type InternshipCreate = unknown;
+export type InternshipDetail = {
+  id: string;
+  title: string;
+  year: number;
+  durationWeeks: number;
+  externalJobId: string | null;
+  status: InternshipStatus;
+  hasScoringCriteria: boolean;
+  scoringCriteriaId: string | null;
+};
 
-/** TODO(intern): the PUT body. */
-export type InternshipUpdate = unknown;
+export type InternshipCreate = {
+  title: string;
+  year: number;
+  durationWeeks: number;
+  externalJobId: string | null;
+  status: InternshipStatus;
+};
+
+export type InternshipUpdate = Partial<InternshipCreate>;
