@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Link } from "react-router";
 import Badge, { type BadgeType } from "../../UI/Atoms/Badge/Badge";
 import ColoredNumber from "../../UI/Atoms/ColoredNumber/ColoredNumber";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
@@ -23,11 +22,11 @@ const statusBadgeType: Partial<Record<CandidateStatus, BadgeType>> = {
   Rejected: "rejected",
 };
 
-export const getBadgeTypeForStatus = (status: CandidateStatus): BadgeType => {
+const getBadgeTypeForStatus = (status: CandidateStatus): BadgeType => {
   return statusBadgeType[status] || "default";
 };
 
-export const getScoreLevel = (score: number): "high" | "mid" | "low" => {
+const getScoreLevel = (score: number): "high" | "mid" | "low" => {
   if (score >= 85) return "high";
   if (score >= 70) return "mid";
   return "low";
@@ -68,7 +67,7 @@ const renderCandidate = (
       style={{ cursor: onClick ? "pointer" : "default" }}
     >
       <InfoTitle label={name} value={email || FALLBACK} />
-    </Link>
+    </div>
   );
 };
 

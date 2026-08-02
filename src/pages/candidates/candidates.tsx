@@ -38,14 +38,14 @@ const Candidates = () => {
     });
 
   const getCardTitle = () => {
-    if (!internship) {
+    if (!selectedInternship) {
       return null;
     }
     return (
       <div className="candidates-header">
         <div className="candidates-header-title">
           <Title type="medium" variant="primary">
-            {internship}
+            {selectedInternship}
           </Title>
           <Badge type="evaluated" text={rows.length + " candidates"} />
         </div>
@@ -81,7 +81,6 @@ const Candidates = () => {
       </div>
     );
   };
-
   return (
     <div className="candidates">
       <InfoTitle
@@ -107,7 +106,10 @@ const Candidates = () => {
       </div>
       <CardInfo title={getCardTitle()} isTable>
         <div className="candidates-table">
-          <Table columns={candidateColumns} data={rows} />
+          <Table
+            columns={candidateColumns}
+            data={selectedInternship ? rows : []}
+          />
         </div>
       </CardInfo>
     </div>
