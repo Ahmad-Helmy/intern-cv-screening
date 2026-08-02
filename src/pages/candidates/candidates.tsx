@@ -1,5 +1,4 @@
 import "./candidates.css";
-import DefaultTemplate from "../../UI/DefaultTemplates/DefaultTemplate";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
 import Table from "../../UI/Molecules/Table/Table";
 import { candidateColumns, candidateData } from "./mockData";
@@ -9,13 +8,34 @@ import Title from "../../UI/Atoms/Title/Title";
 import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
-import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router";
 
 const Candidates = () => {
-  const rows = mapCandidatesToRows(candidateData);
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [searchValue, setSearchValue] = useState("");
-  const [selectedInternship, setSelectedInternship] = useState("");
+  const searchValue = searchParams.get("search") || "";
+  const selectedInternship = searchParams.get("internship") || "";
+  const selectedStatus = searchParams.get("status") || "";
+
+  const rows = mapCandidatesToRows(
+    candidateData,
+    {
+      search: searchValue,
+      internship: selectedInternship,
+      status: selectedStatus,
+    },
+    (id: string) => navigate(`/candidates/${id}`),
+  );
+  const setParam = (key: string, value: string) =>
+    setSearchParams((prev) => {
+      if (value) {
+        prev.set(key, value);
+      } else {
+        prev.delete(key);
+      }
+      return prev;
+    });
 
   const getCardTitle = () => {
     if (!selectedInternship) {
@@ -36,14 +56,14 @@ const Candidates = () => {
               <InputField
                 placeholder="Search candidates..."
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={(e) => setParam("search", e.target.value)}
               />
             }
           </div>
           <div className="">
             {
               <DropdownMenu
-                size="large"
+                size="small"
                 options={[
                   "All Statuses",
                   "Nominated",
@@ -52,10 +72,8 @@ const Candidates = () => {
                   "Processing",
                   "Imported",
                 ]}
-                onChange={(value) => {
-                  //TODO: Implement filter by status
-                  console.log(value);
-                }}
+                selectedOption={selectedStatus}
+                onChange={(value) => setParam("status", value)}
               />
             }
           </div>
@@ -64,38 +82,37 @@ const Candidates = () => {
     );
   };
   return (
-    <DefaultTemplate>
-      <div className="candidates">
-        <InfoTitle
-          label="Candidates"
-          value="Select an internship to review its applicants"
+    <div className="candidates">
+      <InfoTitle
+        label="Candidates"
+        value="Select an internship to review its applicants"
+      />
+      <div className="label-dropdown">
+        <Title type="small" variant="primary">
+          Internship
+        </Title>
+        <DropdownMenu
+          size="large"
+          options={[
+            "Software Engineering Summer Internship 2026",
+            "Data Science Internship 2026",
+            "Cloud & DevOps Internship 2026",
+          ]}
+          selectedOption={selectedInternship}
+          onChange={(value) => {
+            setParam("internship", value);
+          }}
         />
-        <div className="label-dropdown">
-          <Title type="small" variant="primary">
-            Internship
-          </Title>
-          <DropdownMenu
-            size="large"
-            options={[
-              "Software Engineering Summer Internship 2026",
-              "Data Science Internship 2026",
-              "Cloud & DevOps Internship 2026",
-            ]}
-            onChange={(value) => {
-              setSelectedInternship(value);
-            }}
+      </div>
+      <CardInfo title={getCardTitle()} isTable>
+        <div className="candidates-table">
+          <Table
+            columns={candidateColumns}
+            data={selectedInternship ? rows : []}
           />
         </div>
-        <CardInfo title={getCardTitle()} isTable>
-          <div className="candidates-table">
-            <Table
-              columns={candidateColumns}
-              data={selectedInternship ? rows : []}
-            />
-          </div>
-        </CardInfo>
-      </div>
-    </DefaultTemplate>
+      </CardInfo>
+    </div>
   );
 };
 

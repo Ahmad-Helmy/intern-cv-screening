@@ -5,7 +5,11 @@ import candidates from "../../../assets/icons/users.svg";
 import "./SideBar.css";
 import Button from "../../Atoms/Buttons/Button.tsx";
 import signout from "../../../assets/icons/logout.svg";
+import { useAuth } from "../../../context/auth-context";
+
 function Sidebar() {
+  const { logout } = useAuth();
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   return (
     <>
       <aside className="sidebar">
@@ -13,23 +17,23 @@ function Sidebar() {
           <Logo type="sidebar" size="lg" />
 
           <nav className="sidebar_nav">
-            <NavLink label="Candidates" icon={candidates} />
-            <NavLink label="Settings" icon={settings} />
+            <NavLink label="Candidates" to="/candidates" icon={candidates} />
+            <NavLink label="Settings" to="/settings" icon={settings} />
           </nav>
         </div>
 
         <div className="sidebar_footer">
           <div className="sidebar_profile">
-            <div className="sidebar_avatar">U</div>
+            <div className="sidebar_avatar">{user?.name?.[0] ?? "U"}</div>
             <div className="sidebar_user">
-              <strong>User</strong>
-              <span>Role</span>
+              <strong>{user?.name ?? "User"}</strong>
+              <span>{user?.email ?? "Role"}</span>
             </div>
           </div>
           <Button
             text="Sign Out"
             variant="transparent"
-            onClick={() => console.log("Signed Out..")}
+            onClick={logout}
             icon={<img src={signout} alt={"sign out"} />}
           />
         </div>

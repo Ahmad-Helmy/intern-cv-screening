@@ -1,17 +1,30 @@
+import "./Login.css";
 import { useState } from "react";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import Logo from "../../UI/Atoms/Logo/Logo";
 import Title from "../../UI/Atoms/Title/Title";
 import Button from "../../UI/Atoms/Buttons/Button";
 import InputField from "../../UI/Atoms/InputField/InputField";
-import "./Login.css";
+import { useAuth } from "../../context/auth-context";
+import { Navigate } from "react-router";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { user, login } = useAuth();
+  if (user?.id) return <Navigate to="/candidates" replace />;
 
-  //function for signin onclick button
-  const handleSignIn = () => {};
+  const handleSignIn = () => {
+    if (!email.trim() || !password.trim()) {
+      setError("Please enter both email and password.");
+      return;
+    }
+    if (!user?.id) {
+      setError("Invalid email or password.");
+    }
+    login(email, password);
+  };
 
   return (
     <div className="login-page">
@@ -23,7 +36,6 @@ export default function LoginPage() {
               Sign in to your admin account
             </Title>
           </div>
-
           <div className="login-form">
             <div className="login-fields">
               <InputField
@@ -41,7 +53,7 @@ export default function LoginPage() {
                 />
               </div>
             </div>
-
+            {error && <div className="login-error">{error}</div>}
             <Button text="Sign in" variant="primary" onClick={handleSignIn} />
           </div>
         </CardInfo>

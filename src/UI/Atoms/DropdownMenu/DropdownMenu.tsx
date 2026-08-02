@@ -4,31 +4,32 @@ type DropdownMenu_props = {
   options?: string[];
   size: "small" | "large";
   placeholder?: string;
-  label: string;
+  selectedOption?: string;
   onChange: (value: string) => void;
 };
 
 export default function DropdownMenu({
   options = ["no items"],
   size,
-  label,
   onChange,
   placeholder = "Select an Option",
+  selectedOption,
 }: DropdownMenu_props) {
   return (
-    <div className="form-field">
-      <label>{label}</label>
+    <select
+      className={`DropdownMenu DropdownMenu--${size}`}
+      onChange={(event) => onChange(event.target.value)}
+      value={selectedOption}
+    >
+      <option value="" selected disabled hidden>
+        {placeholder}
+      </option>
 
-      <select
-        className={`DropdownMenu DropdownMenu--${size}`}
-        onChange={(event) => onChange(event.target.value)}
-      >
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-    </div>
+      {options.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
   );
 }
