@@ -1,7 +1,7 @@
 import "./candidates.css";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
 import Table from "../../UI/Molecules/Table/Table";
-import { candidateColumns, candidateData } from "./mockData";
+import { candidateColumns } from "./mockData";
 import { mapCandidatesToRows } from "./candidatesService";
 import CardInfo from "../../UI/Molecules/CardInfo/CardInfo";
 import Title from "../../UI/Atoms/Title/Title";
@@ -9,33 +9,50 @@ import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
 import { useNavigate, useSearchParams } from "react-router";
+import { getCandidates } from "../../services/candidates";
+import { getInternships } from "../../services/internships";
+import { useEffect, useState } from "react";
+import type {
+  CandidateStatus,
+  CandidateListItem,
+} from "../../types/api/candidates";
+import type { InternshipListItem } from "../../types/api/internships";
 
 const Candidates = () => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState<
+    CandidateStatus | undefined
+  >(undefined);
+  const [selectedInternship, setSelectedInternship] = useState("");
+  const [internships, setInternships] = useState<InternshipListItem[]>([]);
+  const [candidates, setCandidates] = useState<CandidateListItem[]>([]);
 
-  const searchValue = searchParams.get("search") || "";
-  const selectedInternship = searchParams.get("internship") || "";
-  const selectedStatus = searchParams.get("status") || "";
+  useEffect(() => {
+    async function initializeInternships() {
+      const data = await getInternships();
+      console.log(data);
 
-  const rows = mapCandidatesToRows(
-    candidateData,
-    {
-      search: searchValue,
-      internship: selectedInternship,
-      status: selectedStatus,
-    },
-    (id: string) => navigate(`/candidates/${id}`),
-  );
-  const setParam = (key: string, value: string) =>
-    setSearchParams((prev) => {
-      if (value) {
-        prev.set(key, value);
-      } else {
-        prev.delete(key);
-      }
-      return prev;
+      setInternships(data);
+    }
+    initializeInternships();
+  }, []);
+
+  const handleGetCandidates = async ({
+    id,
+    search,
+    status,
+  }: {
+    id?: string;
+    search?: string;
+    status?: CandidateStatus;
+  }) => {
+    const data = await getCandidates(id || selectedInternship, {
+      search: search || searchValue,
+      status: status || selectedStatus,
     });
+    setCandidates(data);
+  };
 
   const getCardTitle = () => {
     if (!selectedInternship) {
@@ -47,7 +64,7 @@ const Candidates = () => {
           <Title type="medium" variant="primary">
             {selectedInternship}
           </Title>
-          <Badge type="evaluated" text={rows.length + " candidates"} />
+          <Badge type="evaluated" text={candidates.length + " candidates"} />
         </div>
 
         <div className="candidates-actions">
@@ -56,7 +73,11 @@ const Candidates = () => {
               <InputField
                 placeholder="Search candidates..."
                 value={searchValue}
-                onChange={(e) => setParam("search", e.target.value)}
+                onChange={(e) => {
+                  handleGetCandidates({ search: e.target.value });
+                  setSearchValue(e.target.value);
+                  // handleGetCandidates(selectedInternship);
+                }}
               />
             }
           </div>
@@ -76,7 +97,9 @@ const Candidates = () => {
                   { id: "Imported", label: "Imported" },
                 ]}
                 selectedOption={selectedStatus}
-                onChange={(value) => setParam("status", value)}
+                onChange={(value) => {
+                  setSelectedStatus(value as CandidateStatus);
+                }}
               />
             }
           </div>
@@ -96,23 +119,14 @@ const Candidates = () => {
         </Title>
         <DropdownMenu
           size="large"
-          options={[
-            {
-              id: "Software Engineering Summer Internship 2026",
-              label: "Software Engineering Summer Internship 2026",
-            },
-            {
-              id: "Data Science Internship 2026",
-              label: "Data Science Internship 2026",
-            },
-            {
-              id: "Cloud & DevOps Internship 2026",
-              label: "Cloud & DevOps Internship 2026",
-            },
-          ]}
+          options={internships.map((internship) => ({
+            id: internship.id,
+            label: internship.name,
+          }))}
           selectedOption={selectedInternship}
           onChange={(value) => {
-            setParam("internship", value);
+            setSelectedInternship(value);
+            handleGetCandidates({ id: value });
           }}
         />
       </div>
@@ -120,7 +134,7 @@ const Candidates = () => {
         <div className="candidates-table">
           <Table
             columns={candidateColumns}
-            data={selectedInternship ? rows : []}
+            data={selectedInternship ? candidates : []}
           />
         </div>
       </CardInfo>
