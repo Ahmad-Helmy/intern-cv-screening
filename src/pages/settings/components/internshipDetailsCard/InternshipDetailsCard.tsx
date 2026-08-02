@@ -1,7 +1,6 @@
 import "./InternshipDetailsCard.css";
 import CardInfo from "../../../../UI/Molecules/CardInfo/CardInfo";
 import InputField from "../../../../UI/Atoms/InputField/InputField";
-import Title from "../../../../UI/Atoms/Title/Title";
 import DropdownMenu from "../../../../UI/Atoms/DropdownMenu/DropdownMenu";
 import Button from "../../../../UI/Atoms/Buttons/Button";
 import BriefCaseIcon from "../../../../assets/icons/briefcase.svg";
@@ -29,7 +28,11 @@ export default function InternshipDetailsCard() {
             <p className="label">Status</p>
             <DropdownMenu
               size="large"
-              options={["Open", "Closed", "Draft"]}
+              options={[
+                { label: "Open", id: "open" },
+                { label: "Draft", id: "draft" },
+                { label: "Closed", id: "closed" },
+              ]}
               onChange={(value) => console.log(value)}
             />
           </div>
