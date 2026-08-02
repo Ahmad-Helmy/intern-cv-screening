@@ -3,8 +3,9 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-2) var(--spacing-3);
+  gap: var(--spacing-2);
 }
 
 .btn-primary {

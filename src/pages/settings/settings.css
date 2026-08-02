@@ -14,6 +14,12 @@
   margin-top: var(--spacing-5);
 }
 
+.card-info-header-row {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 .internship-card {
   padding: var(--spacing-4);
   border-radius: var(--border-radius-md);
