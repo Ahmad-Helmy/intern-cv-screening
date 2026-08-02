@@ -13,11 +13,22 @@
  * than writing the four user fields out twice.
  */
 
-/** TODO(intern): what the login form sends. */
-export type LoginRequest = unknown;
+/** What the login form sends. */
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
 
-/** TODO(intern): the signed-in person — what GET /auth/me returns. */
-export type AuthUser = unknown;
+/** The signed-in person — what GET /auth/me returns. */
+export interface AuthUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  designation: string;
+}
 
-/** TODO(intern): the login response — a token, an expiry, and the user fields. */
-export type AuthTokenResponse = unknown;
+/** The login response — a token, an expiry, and the user fields. */
+export interface AuthTokenResponse extends AuthUser {
+  token: string;
+  expiresAt: string;
+}
