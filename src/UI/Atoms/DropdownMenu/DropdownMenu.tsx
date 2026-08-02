@@ -4,7 +4,7 @@ type DropdownMenu_props = {
   options?: string[];
   size: "small" | "large";
   placeholder?: string;
-  value?: string;
+  selectedOption?: string;
   onChange: (value: string) => void;
 };
 
@@ -13,13 +13,13 @@ export default function DropdownMenu({
   size,
   onChange,
   placeholder = "Select an Option",
-  value = "",
+  selectedOption,
 }: DropdownMenu_props) {
   return (
     <select
       className={`DropdownMenu DropdownMenu--${size}`}
-      value={value}
       onChange={(event) => onChange(event.target.value)}
+      value={selectedOption}
     >
       <option value="" disabled hidden>
         {placeholder}

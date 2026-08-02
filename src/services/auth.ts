@@ -11,7 +11,11 @@
  */
 
 import api from "./api";
-import type { AuthTokenResponse, AuthUser, LoginRequest } from "../types/api/auth";
+import type {
+  AuthTokenResponse,
+  AuthUser,
+  LoginRequest,
+} from "../types/api/auth";
 
 /** The single key we keep in localStorage. Nothing else about the user is persisted. */
 const TOKEN_KEY = "auth_token";

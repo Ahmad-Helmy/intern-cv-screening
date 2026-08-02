@@ -74,8 +74,10 @@ export const handlers = [
       email?: string;
       password?: string;
     };
-    const expectedEmail = import.meta.env.VITE_MOCK_USER_EMAIL ?? "demo@celfocus.com";
-    const expectedPassword = import.meta.env.VITE_MOCK_USER_PASSWORD ?? "password";
+    const expectedEmail =
+      import.meta.env.VITE_MOCK_USER_EMAIL ?? "demo@celfocus.com";
+    const expectedPassword =
+      import.meta.env.VITE_MOCK_USER_PASSWORD ?? "password";
 
     if (body.email !== expectedEmail || body.password !== expectedPassword) {
       // Mirrors the backend's 401 for invalid credentials.
@@ -111,7 +113,8 @@ export const handlers = [
       .filter((c) => c.internshipId === internshipId)
       .map((c) => c.list);
 
-    if (search) rows = rows.filter((c) => c.name.toLowerCase().includes(search));
+    if (search)
+      rows = rows.filter((c) => c.name.toLowerCase().includes(search));
     if (status) rows = rows.filter((c) => c.status === status);
     if (isNominatedParam != null) {
       const want = isNominatedParam === "true";
@@ -142,48 +145,59 @@ export const handlers = [
   // ── Scoring criteria (must precede /internships/:id) ─────────────────────
   http.get("*/internships/:internshipId/scoring-criteria", ({ params }) => {
     const criteria = criteriaStore[params.internshipId as string];
-    if (!criteria) return HttpResponse.json(fail(NOT_FOUND, "Scoring criteria not found."));
+    if (!criteria)
+      return HttpResponse.json(fail(NOT_FOUND, "Scoring criteria not found."));
     return HttpResponse.json(ok(criteria));
   }),
 
-  http.post("*/internships/:internshipId/scoring-criteria", async ({ params, request }) => {
-    const internshipId = params.internshipId as string;
-    const body = (await request.json()) as ScoringCriteriaBody;
-    const created = {
-      ...body,
-      id: newUuid(),
-      internshipId,
-      totalWeight: sumWeights(body),
-      minimumGPA: body.minimumGPA ?? null,
-      minGraduationYear: body.minGraduationYear ?? null,
-      maxGraduationYear: body.maxGraduationYear ?? null,
-    };
-    criteriaStore[internshipId] = created;
-    markHasCriteria(internshipStore, internshipId, created.id, true);
-    return HttpResponse.json(ok(created));
-  }),
+  http.post(
+    "*/internships/:internshipId/scoring-criteria",
+    async ({ params, request }) => {
+      const internshipId = params.internshipId as string;
+      const body = (await request.json()) as ScoringCriteriaBody;
+      const created = {
+        ...body,
+        id: newUuid(),
+        internshipId,
+        totalWeight: sumWeights(body),
+        minimumGPA: body.minimumGPA ?? null,
+        minGraduationYear: body.minGraduationYear ?? null,
+        maxGraduationYear: body.maxGraduationYear ?? null,
+      };
+      criteriaStore[internshipId] = created;
+      markHasCriteria(internshipStore, internshipId, created.id, true);
+      return HttpResponse.json(ok(created));
+    },
+  ),
 
-  http.put("*/internships/:internshipId/scoring-criteria", async ({ params, request }) => {
-    const internshipId = params.internshipId as string;
-    const existing = criteriaStore[internshipId];
-    if (!existing) return HttpResponse.json(fail(NOT_FOUND, "Scoring criteria not found."));
-    const body = (await request.json()) as ScoringCriteriaBody;
-    const updated = {
-      ...existing,
-      ...body,
-      totalWeight: sumWeights(body),
-      minimumGPA: body.minimumGPA ?? null,
-      minGraduationYear: body.minGraduationYear ?? null,
-      maxGraduationYear: body.maxGraduationYear ?? null,
-    };
-    criteriaStore[internshipId] = updated;
-    return HttpResponse.json(ok(updated));
-  }),
+  http.put(
+    "*/internships/:internshipId/scoring-criteria",
+    async ({ params, request }) => {
+      const internshipId = params.internshipId as string;
+      const existing = criteriaStore[internshipId];
+      if (!existing)
+        return HttpResponse.json(
+          fail(NOT_FOUND, "Scoring criteria not found."),
+        );
+      const body = (await request.json()) as ScoringCriteriaBody;
+      const updated = {
+        ...existing,
+        ...body,
+        totalWeight: sumWeights(body),
+        minimumGPA: body.minimumGPA ?? null,
+        minGraduationYear: body.minGraduationYear ?? null,
+        maxGraduationYear: body.maxGraduationYear ?? null,
+      };
+      criteriaStore[internshipId] = updated;
+      return HttpResponse.json(ok(updated));
+    },
+  ),
 
   http.delete("*/internships/:internshipId/scoring-criteria", ({ params }) => {
     const internshipId = params.internshipId as string;
     const existing = criteriaStore[internshipId];
-    if (!existing) return HttpResponse.json(fail(NOT_FOUND, "Scoring criteria not found."));
+    if (!existing)
+      return HttpResponse.json(fail(NOT_FOUND, "Scoring criteria not found."));
     delete criteriaStore[internshipId];
     markHasCriteria(internshipStore, internshipId, null, false);
     return HttpResponse.json(ok(existing));
@@ -192,7 +206,8 @@ export const handlers = [
   // ── Internship detail / CRUD (ResponseModel envelope) ────────────────────
   http.get("*/internships/:id", ({ params }) => {
     const found = internshipStore.find((i) => i.id === params.id);
-    if (!found) return HttpResponse.json(fail(NOT_FOUND, "Internship not found."));
+    if (!found)
+      return HttpResponse.json(fail(NOT_FOUND, "Internship not found."));
     return HttpResponse.json(ok(found));
   }),
 
@@ -215,7 +230,8 @@ export const handlers = [
 
   http.put("*/internships/:id", async ({ params, request }) => {
     const idx = internshipStore.findIndex((i) => i.id === params.id);
-    if (idx === -1) return HttpResponse.json(fail(NOT_FOUND, "Internship not found."));
+    if (idx === -1)
+      return HttpResponse.json(fail(NOT_FOUND, "Internship not found."));
     const body = (await request.json()) as InternshipBody;
     const updated = {
       ...internshipStore[idx],
@@ -233,7 +249,8 @@ export const handlers = [
 
   http.delete("*/internships/:id", ({ params }) => {
     const idx = internshipStore.findIndex((i) => i.id === params.id);
-    if (idx === -1) return HttpResponse.json(fail(NOT_FOUND, "Internship not found."));
+    if (idx === -1)
+      return HttpResponse.json(fail(NOT_FOUND, "Internship not found."));
     const [removed] = internshipStore.splice(idx, 1);
     const li = listStore.findIndex((i) => i.id === removed.id);
     if (li !== -1) listStore.splice(li, 1);

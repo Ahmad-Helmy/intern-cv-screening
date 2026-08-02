@@ -8,67 +8,34 @@ import Title from "../../UI/Atoms/Title/Title";
 import DropdownMenu from "../../UI/Atoms/DropdownMenu/DropdownMenu";
 import InputField from "../../UI/Atoms/InputField/InputField";
 import Badge from "../../UI/Atoms/Badge/Badge";
-import { useMemo } from "react";
-import { useSearchParams } from "react-router";
-
-const ALL_STATUSES = "All Statuses";
-
-const internships = [
-  "Software Engineering Summer Internship 2026",
-  "Data Science Internship 2026",
-  "Cloud & DevOps Internship 2026",
-];
-
-const statuses = [
-  ALL_STATUSES,
-  "Nominated",
-  "Evaluated",
-  "Rejected",
-  "Processing",
-  "Imported",
-];
+import { useNavigate, useSearchParams } from "react-router";
 
 const Candidates = () => {
-  // the filters live in the URL: they survive a refresh, work with the back
-  // button, and the page can be shared as a link
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const internship = searchParams.get("internship") ?? "";
-  const status = searchParams.get("status") ?? ALL_STATUSES;
-  const search = searchParams.get("q") ?? "";
+  const searchValue = searchParams.get("search") || "";
+  const selectedInternship = searchParams.get("internship") || "";
+  const selectedStatus = searchParams.get("status") || "";
 
-  const setParam = (key: string, value: string, replace = false) => {
-    setSearchParams(
-      (prev) => {
-        const next = new URLSearchParams(prev);
-        if (value) {
-          next.set(key, value);
-        } else {
-          next.delete(key);
-        }
-        return next;
-      },
-      { replace },
-    );
-  };
-
-  const filtered = useMemo(() => {
-    if (!internship) return [];
-    const query = search.trim().toLowerCase();
-    return candidateData.filter((candidate) => {
-      const matchesStatus =
-        status === ALL_STATUSES || candidate.Status === status;
-      const matchesQuery =
-        !query ||
-        (candidate.Candidate ?? "").toLowerCase().includes(query) ||
-        (candidate.Email ?? "").toLowerCase().includes(query);
-      return matchesStatus && matchesQuery;
+  const rows = mapCandidatesToRows(
+    candidateData,
+    {
+      search: searchValue,
+      internship: selectedInternship,
+      status: selectedStatus,
+    },
+    (id: string) => navigate(`/candidates/${id}`),
+  );
+  const setParam = (key: string, value: string) =>
+    setSearchParams((prev) => {
+      if (value) {
+        prev.set(key, value);
+      } else {
+        prev.delete(key);
+      }
+      return prev;
     });
-  }, [internship, status, search]);
-
-  // without the memo this rebuilds a Badge, a ColoredNumber and an InfoTitle
-  // for every row on every keystroke in the search box
-  const rows = useMemo(() => mapCandidatesToRows(filtered), [filtered]);
 
   const getCardTitle = () => {
     if (!internship) {
@@ -85,20 +52,30 @@ const Candidates = () => {
 
         <div className="candidates-actions">
           <div className="">
-            <InputField
-              placeholder="Search candidates..."
-              value={search}
-              // replace, so typing does not leave one history entry per letter
-              onChange={(e) => setParam("q", e.target.value, true)}
-            />
+            {
+              <InputField
+                placeholder="Search candidates..."
+                value={searchValue}
+                onChange={(e) => setParam("search", e.target.value)}
+              />
+            }
           </div>
           <div className="">
-            <DropdownMenu
-              size="large"
-              value={status}
-              options={statuses}
-              onChange={(value) => setParam("status", value)}
-            />
+            {
+              <DropdownMenu
+                size="small"
+                options={[
+                  "All Statuses",
+                  "Nominated",
+                  "Evaluated",
+                  "Rejected",
+                  "Processing",
+                  "Imported",
+                ]}
+                selectedOption={selectedStatus}
+                onChange={(value) => setParam("status", value)}
+              />
+            }
           </div>
         </div>
       </div>
@@ -117,9 +94,15 @@ const Candidates = () => {
         </Title>
         <DropdownMenu
           size="large"
-          value={internship}
-          options={internships}
-          onChange={(value) => setParam("internship", value)}
+          options={[
+            "Software Engineering Summer Internship 2026",
+            "Data Science Internship 2026",
+            "Cloud & DevOps Internship 2026",
+          ]}
+          selectedOption={selectedInternship}
+          onChange={(value) => {
+            setParam("internship", value);
+          }}
         />
       </div>
       <CardInfo title={getCardTitle()} isTable>

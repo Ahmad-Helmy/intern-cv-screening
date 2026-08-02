@@ -5,10 +5,11 @@ import candidates from "../../../assets/icons/users.svg";
 import "./SideBar.css";
 import Button from "../../Atoms/Buttons/Button.tsx";
 import signout from "../../../assets/icons/logout.svg";
-import { useAuth } from "../../../context/auth-context.ts";
-function Sidebar() {
-  const { user, logout } = useAuth();
+import { useAuth } from "../../../context/auth-context";
 
+function Sidebar() {
+  const { logout } = useAuth();
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   return (
     <>
       <aside className="sidebar">
@@ -23,12 +24,10 @@ function Sidebar() {
 
         <div className="sidebar_footer">
           <div className="sidebar_profile">
-            <div className="sidebar_avatar">
-              {user ? user.name.charAt(0).toUpperCase() : "?"}
-            </div>
+            <div className="sidebar_avatar">{user?.name?.[0] ?? "U"}</div>
             <div className="sidebar_user">
-              <strong>{user ? user.name : "Not signed in"}</strong>
-              <span>{user ? user.email : "-"}</span>
+              <strong>{user?.name ?? "User"}</strong>
+              <span>{user?.email ?? "Role"}</span>
             </div>
           </div>
           <Button

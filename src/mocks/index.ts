@@ -15,5 +15,7 @@ export const enableMocksIfRequested = async (): Promise<void> => {
     quiet: false,
   });
 
-  console.info("[mocks] Mock Service Worker started — UI is serving mock data.");
+  console.info(
+    "[mocks] Mock Service Worker started — UI is serving mock data.",
+  );
 };
