@@ -54,6 +54,7 @@ export const storeToken = (token: string) => {
 /** Drops the credential. Call this from the auth context's `logout`. */
 export const clearToken = () => {
   localStorage.removeItem(TOKEN_KEY);
+  localStorage.clear();
 };
 
 export const getStoredToken = () => localStorage.getItem(TOKEN_KEY);
