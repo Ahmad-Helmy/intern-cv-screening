@@ -37,7 +37,7 @@ export default function ScoringCriteriaCard() {
         <div className="scoring-criteria-section">
           <div className="section-header">
             <p className="label">WEIGHTS</p>
-            <Badge text={"Σ = {weightSum} / 100"} type="nominated" />
+            <Badge text={`Σ = ${weightSum} / 100`} type="nominated" />
           </div>
 
           <div className="weights-row">

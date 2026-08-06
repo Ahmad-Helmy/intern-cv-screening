@@ -2,6 +2,7 @@ import type { Candidate } from "../../types/candidates";
 
 export const candidatesMockData: Candidate[] = [
   {
+    internships: [],
     id: "1",
     name: "Mohammed Khalil",
     email: "mohammed.khalil@aucegypt.edu",
@@ -81,6 +82,7 @@ export const candidatesMockData: Candidate[] = [
     },
   },
   {
+    internships: [],
     id: "2",
     name: "Laila Fathy",
     email: "laila.fathy@cu.edu.eg",
@@ -147,6 +149,7 @@ export const candidatesMockData: Candidate[] = [
     },
   },
   {
+    internships: [],
     id: "3",
     name: "Youssef Adel",
     email: "youssef.adel@asu.edu.eg",
@@ -218,6 +221,7 @@ export const candidatesMockData: Candidate[] = [
     },
   },
   {
+    internships: [],
     id: "4",
     name: "Nour Mostafa",
     email: "nour.mostafa@guc.edu.eg",
@@ -301,6 +305,7 @@ export const candidatesMockData: Candidate[] = [
     },
   },
   {
+    internships: [],
     id: "5",
     name: "Omar Sherif",
     email: "omar.sherif@alexu.edu.eg",
@@ -316,6 +321,7 @@ export const candidatesMockData: Candidate[] = [
     trackPreference: "Data / ML",
   },
   {
+    internships: [],
     id: "6",
     name: "Salma Reda",
     email: "salma.reda@nu.edu.eg",
@@ -386,6 +392,7 @@ export const candidatesMockData: Candidate[] = [
     },
   },
   {
+    internships: [],
     id: "7",
     name: "Karim Hassan",
     email: "karim.hassan@aucegypt.edu",
@@ -401,6 +408,7 @@ export const candidatesMockData: Candidate[] = [
     trackPreference: "Frontend",
   },
   {
+    internships: [],
     id: "8",
     name: "Mariam Tarek",
     email: "mariam.tarek@cu.edu.eg",
@@ -472,6 +480,7 @@ export const candidatesMockData: Candidate[] = [
     },
   },
   {
+    internships: [],
     id: "9",
     name: "Ahmed Nabil",
     email: "ahmed.nabil@zewailcity.edu.eg",
@@ -487,6 +496,7 @@ export const candidatesMockData: Candidate[] = [
     trackPreference: "RF / Wireless",
   },
   {
+    internships: [],
     id: "10",
     name: "Hana Wael",
     email: "hana.wael@guc.edu.eg",
