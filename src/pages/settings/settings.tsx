@@ -15,7 +15,7 @@ import Title from "../../UI/Atoms/Title/Title.tsx";
 const suitcase = <img src={suitcaseIcon} alt="suicase-icon" />;
 
 const Settings: React.FC = () => {
-  const [internships, setInternships] = useState<any[]>([]);
+  const [, setInternships] = useState<any[]>([]);
 
   useEffect(() => {
     async function initializeInternships() {

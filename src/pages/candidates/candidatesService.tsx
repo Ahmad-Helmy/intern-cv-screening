@@ -4,7 +4,7 @@ import ColoredNumber from "../../UI/Atoms/ColoredNumber/ColoredNumber";
 import InfoTitle from "../../UI/Molecules/InfoTitle/InfoTitle";
 import type { CandidateListItem } from "../../types/api/candidates";
 
-type CandidateFilters = {
+export type CandidateFilters = {
   search?: string;
   internship?: string;
   status?: string;
